@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+# Options +FollowSymlinks
+# Options +SymLinksIfOwnerMatch
+ RewriteEngine On
+# RewriteBase /
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteCond %{SCRIPT_FILENAME} !-f
+    RewriteCond %{SCRIPT_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?url=$1
+</IfModule>

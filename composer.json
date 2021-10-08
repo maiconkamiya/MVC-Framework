@@ -1,0 +1,17 @@
+{
+    "name": "mtakeshi/mvc-framework",
+    "description": "Framework baisco e simples de utilizar",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Maicon Takeshi Kamiya",
+            "email": "maiconkamiya@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "criativa\\": "src/"
+        }
+    }
+}
