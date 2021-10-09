@@ -1,0 +1,9 @@
+<h1>Area <?php echo $view_area;?></h1>
+<h2>Controller <?php echo $view_controller;?></h2>
+<h3>Action <?php echo $view_action;?></h3>
+<h4>Params</h4>
+<ul>
+    <?php foreach($view_params as $li => $va):?>
+    <li><?php echo $li;?> : <?php echo $va;?></li>
+    <?php endforeach;?>
+</ul>
