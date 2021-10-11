@@ -46,12 +46,12 @@ class Config {
             self::$charset = $con->charset;
         }
 
-        constant(self::$prefix);
-        constant(self::$srvMyhost);
-        constant(self::$srvMyuser);
-        constant(self::$srvMypass);
-        constant(self::$srvMydbname);
-        constant(self::$charset);
+        constant("self::prefix");
+        constant("self::srvMyhost");
+        constant("self::srvMyuser");
+        constant("self::srvMypass");
+        constant("self::srvMydbname");
+        constant("self::charset");
     }
 
 }
