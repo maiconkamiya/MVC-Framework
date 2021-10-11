@@ -6,7 +6,7 @@
  * Time: 11:24
  */
 
-namespace criativa\controller\web;
+namespace mvc\controller\web;
 
 use criativa\lib\Controller;
 
