@@ -28,32 +28,32 @@ class System extends Router {
         $this->explode = explode('/', $this->url);
     }
     private function _setArea(){
-        $this->onDefault = true;
+        Router::$onDefault = true;
 
-        foreach ($this->routers as $i => $v){
-            if ($this->onDefault && $this->explode[0] == $i){
+        foreach (Router::$routers as $i => $v){
+            if (Router::$onDefault && $this->explode[0] == $i){
                 $this->area = $v;
-                $this->onDefault = false;
+                Router::$onDefault = false;
             }
         }
 
-        $this->area = empty($this->area) ? $this->routers[$this->routerOnDefault] : $this->area;
+        $this->area = empty($this->area) ? Router::$routers[Router::$routerOnDefault] : $this->area;
 
         if (!defined('APP_AREA')){
-            define('APP_AREA', ($this->onDefault ? './' : $this->area));
+            define('APP_AREA', (Router::$onDefault ? './' : $this->area));
         }
     }
     private function _setController(){
-        $this->controller = $this->onDefault ? $this->explode[0] :
+        $this->controller = Router::$onDefault ? $this->explode[0] :
             (empty($this->explode[1]) || is_null($this->explode[1]) || !isset($this->explode[1]) ? 'home' : $this->explode[1]);
     }
     private function _setAction(){
-        $this->action = $this->onDefault ?
+        $this->action = Router::$onDefault ?
             (!isset($this->explode[1]) || is_null($this->explode[1]) || empty($this->explode[1]) ? 'index' : $this->explode[1]) :
             (!isset($this->explode[2]) || is_null($this->explode[2]) || empty($this->explode[2]) ? 'index' : $this->explode[2]);
     }
     private function _setParams(){
-        if ($this->onDefault){
+        if (self::$onDefault){
             unset($this->explode[0], $this->explode[1]);
         } else {
             unset($this->explode[0], $this->explode[1], $this->explode[2]);

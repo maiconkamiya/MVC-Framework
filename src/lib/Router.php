@@ -3,11 +3,19 @@
 namespace criativa\lib;
 
 class Router {
-    protected $routers = array(
-        'web' => 'web',
-    );
 
-    protected $routerOnDefault = 'web';
+    protected static $routers;
 
-    protected $onDefault = true;
+    protected static $routerOnDefault = 'web';
+
+    protected static $onDefault = true;
+
+    public static function setRouters($router){
+        self::$routers = $router;
+    }
+
+    public static function setRouterOnDefault($router){
+        self::$routerOnDefault = $router;
+    }
+
 }
