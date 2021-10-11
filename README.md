@@ -18,3 +18,34 @@ Ou ainda alterando o composer.json do seu aplicativo inserindo:
         "mtakeshi/mvc-framework": "dev-main"
 }
 ```
+
+## Configurações
+
+* Configuração de conexão com MySQL *
+
+```php
+use criativa\lib\Config;
+
+Config::setConfig((object) array(
+    'prefix' => 'tab',
+    'host' => 'localhost',
+    'user' => 'root',
+    'pwd' => '',
+    'dbname' => 'teste',
+    'charset' => 'utf8'
+));
+```
+
+* Definição de rotas *
+
+```php
+use criativa\lib\Router;
+
+//Lista de Rotas
+Router::setRouters(array(
+    'web' => 'web'
+));
+
+// Rota Padrão
+Router::setRouterOnDefault('web');
+```

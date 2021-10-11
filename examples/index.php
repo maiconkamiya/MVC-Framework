@@ -1,10 +1,10 @@
 <?php
+session_start();
 
 define('TITLE', 'INDEX TITLE');
 define('DESCRIPTION', 'INDEX DESCRIPTION');
 define('KEYWORDS', 'INDEX KEYWORDS');
 
-session_start();
 
 require 'vendor/autoload.php';
 
