@@ -9,6 +9,7 @@
 namespace criativa\lib;
 
 class Model extends Config {
+
     protected $con;
 
     public function __construct(){
@@ -17,8 +18,8 @@ class Model extends Config {
         }
 
         try {
-            $this->con = new \PDO("mysql:host=" . self::srvMyhost . ";dbname=" . self::srvMydbname, self::srvMyuser, self::srvMypass);
-            $this->con->exec("set names " . self::charset);
+            $this->con = new \PDO("mysql:host=" . self::$host . ";dbname=" . self::$dbname, self::$user, self::$pwd);
+            $this->con->exec("set names " . self::$charset);
             $this->con->exec("SET GLOBAL sql_mode=''");
             $this->con->exec("SET GLOBAL time_zone='".TIME_ZONE."'");
 
