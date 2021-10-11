@@ -21,6 +21,8 @@ Ou ainda alterando o composer.json do seu aplicativo inserindo:
 
 ## Configurações
 
+**No arquivo index.php que ficara na raiz do projeto, segue o código de inicialização**
+
 * Configuração de conexão com MySQL *
 
 ```php
@@ -48,4 +50,13 @@ Router::setRouters(array(
 
 // Rota Padrão
 Router::setRouterOnDefault('web');
+```
+
+* Iniciar o sistema *
+
+```php
+use criativa\lib\System;
+
+$System = new System();
+$System->run();
 ```
