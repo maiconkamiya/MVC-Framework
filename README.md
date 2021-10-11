@@ -16,5 +16,5 @@ Ou ainda alterando o composer.json do seu aplicativo inserindo:
 ```json
 "require": {
         "mtakeshi/mvc-framework": "dev-main"
-    }
+}
 ```
