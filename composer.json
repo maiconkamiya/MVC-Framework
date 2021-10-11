@@ -2,7 +2,10 @@
     "name": "mtakeshi/mvc-framework",
     "description": "Framework baisco e simples de utilizar",
     "minimum-stability": "stable",
-    "license": "proprietary",
+    "type": "library",
+    "keywords": ["php","mvc","framework"],
+    "homepage": "https://github.com/maiconkamiya/MVC-Framework",
+    "license": ["LGPL-3.0-or-later", "GPL-3.0-or-later", "MIT"],
     "authors": [
         {
             "name": "Maicon Takeshi Kamiya",
