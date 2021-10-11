@@ -7,7 +7,7 @@ Este pacote é aderente com os [PSR-1], [PSR-2] e [PSR-4]. Se você observar neg
 
 **Este pacote está listado no [Packgist](https://packagist.org/) foi desenvolvido para uso do [Composer](https://getcomposer.org/)**
 
-*E deve ser instalado com:*
+E deve ser instalado com:
 ```bash
 composer require mtakeshi/mvc-framework
 ```
@@ -23,7 +23,7 @@ Ou ainda alterando o composer.json do seu aplicativo inserindo:
 
 **No arquivo index.php que ficara na raiz do projeto, segue o código de inicialização**
 
-* Configuração de conexão com MySQL *
+Configuração de conexão com MySQL
 
 ```php
 use criativa\lib\Config;
@@ -38,7 +38,7 @@ Config::setConfig((object) array(
 ));
 ```
 
-* Definição de rotas *
+Definição de rotas
 
 ```php
 use criativa\lib\Router;
@@ -52,10 +52,38 @@ Router::setRouters(array(
 Router::setRouterOnDefault('web');
 ```
 
-* Iniciar o sistema *
+Iniciar o sistema
 
 ```php
 use criativa\lib\System;
+
+$System = new System();
+$System->run();
+```
+
+Arquivo index.php
+
+```php
+require 'vendor/autoload.php';
+
+use criativa\lib\Config;
+use criativa\lib\Router;
+use criativa\lib\System;
+
+Config::setConfig((object) array(
+    'prefix' => 'tab',
+    'host' => 'localhost',
+    'user' => 'root',
+    'pwd' => '',
+    'dbname' => 'teste',
+    'charset' => 'utf8'
+));
+
+Router::setRouters(array(
+    'web' => 'web'
+));
+
+Router::setRouterOnDefault('web');
 
 $System = new System();
 $System->run();
