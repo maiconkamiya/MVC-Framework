@@ -1,5 +1,6 @@
 <?php
 
+
 namespace criativa\lib;
 
 class System extends Router {
