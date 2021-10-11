@@ -102,7 +102,7 @@ class System extends Router {
     }
 
     public function run(){
-        $this->init = 'criativa\\controller\\' . $this->area . '\\' . $this->controller . 'Controller';
+        $this->init = 'mvc\\controller\\' . $this->area . '\\' . $this->controller . 'Controller';
         $this->_validarController();
         $this->init = new $this->init();
         $this->_validarAction();
