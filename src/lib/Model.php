@@ -25,7 +25,7 @@ class Model extends Config {
 
             $this->con->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch(\PDOException $ex){
-            echo json_encode(array('sucess' => false, 'feedback' => $ex->getMessage()));
+            echo json_encode(array('sucess' => false, 'feedback' => $ex->getMessage() . ' host:' . self::$host . ' db:' . self::$dbname));
             exit();
         }
     }
