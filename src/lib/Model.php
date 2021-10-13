@@ -12,7 +12,11 @@ class Model extends Config {
 
     protected $con;
 
+    private $db;
+
     public function __construct(){
+        $this->db = self::$dbname;
+
         if (!defined('TIME_ZONE')){
             define('TIME_ZONE', '-04:00');
         }
@@ -166,19 +170,19 @@ class Model extends Config {
     }
 
     public function existsTable($elent){
-        $query = $this->First($this->Select("SELECT count(1) as count FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'criativa_{$this->db}' AND TABLE_NAME = '{$elent}'"));
+        $query = $this->First($this->Select("SELECT count(1) as count FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '{$this->db}' AND TABLE_NAME = '{$elent}'"));
         return $query->count == 0 ? false : true;
     }
     public function existsRotina($elent){
-        $query = $this->First($this->Select("SELECT count(1) as count FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA = 'criativa_{$this->db}' AND ROUTINE_NAME = '{$elent}'"));
+        $query = $this->First($this->Select("SELECT count(1) as count FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA = '{$this->db}' AND ROUTINE_NAME = '{$elent}'"));
         return $query->count == 0 ? false : true;
     }
     public function existsTrigger($elent){
-        $query = $this->First($this->Select("SELECT count(1) as count FROM INFORMATION_SCHEMA.TRIGGERS WHERE TRIGGER_SCHEMA = 'criativa_{$this->db}' AND TRIGGER_NAME = '{$elent}'"));
+        $query = $this->First($this->Select("SELECT count(1) as count FROM INFORMATION_SCHEMA.TRIGGERS WHERE TRIGGER_SCHEMA = '{$this->db}' AND TRIGGER_NAME = '{$elent}'"));
         return $query->count == 0 ? false : true;
     }
     public function getSizeDB(){
-        $query = $this->First($this->Select("SELECT ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) as sizedb FROM information_schema.tables WHERE table_schema = 'criativa_{$this->db}';"));
+        $query = $this->First($this->Select("SELECT ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) as sizedb FROM information_schema.tables WHERE table_schema = '{$this->db}';"));
         return $query->sizedb;
     }
 
