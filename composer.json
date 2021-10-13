@@ -17,8 +17,5 @@
             "criativa\\": "src/",
             "mvc\\": "../../../src/"
         }
-    },
-    "require": {
-        "twbs/bootstrap": "dev-main"
     }
 }
