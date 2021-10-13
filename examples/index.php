@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+define('RAIZ_PATH', '');
+define('APP_ROOT', 'http'.(isset($_SERVER['HTTPS']) ? (($_SERVER['HTTPS']=="on") ? "s" : "") : "") .'://' . $_SERVER['HTTP_HOST'] . '/'. RAIZ_PATH);
+
 define('TITLE', 'INDEX TITLE');
 define('DESCRIPTION', 'INDEX DESCRIPTION');
 define('KEYWORDS', 'INDEX KEYWORDS');
