@@ -164,4 +164,72 @@ class Model extends Config {
             }
         }
     }
+
+    public function existsTable($elent){
+        $query = $this->First($this->Select("SELECT count(1) as count FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'criativa_{$this->db}' AND TABLE_NAME = '{$elent}'"));
+        return $query->count == 0 ? false : true;
+    }
+    public function existsRotina($elent){
+        $query = $this->First($this->Select("SELECT count(1) as count FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA = 'criativa_{$this->db}' AND ROUTINE_NAME = '{$elent}'"));
+        return $query->count == 0 ? false : true;
+    }
+    public function existsTrigger($elent){
+        $query = $this->First($this->Select("SELECT count(1) as count FROM INFORMATION_SCHEMA.TRIGGERS WHERE TRIGGER_SCHEMA = 'criativa_{$this->db}' AND TRIGGER_NAME = '{$elent}'"));
+        return $query->count == 0 ? false : true;
+    }
+    public function getSizeDB(){
+        $query = $this->First($this->Select("SELECT ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) as sizedb FROM information_schema.tables WHERE table_schema = 'criativa_{$this->db}';"));
+        return $query->sizedb;
+    }
+
+    protected function where($obj){
+        $sql = "";
+        foreach ($obj as $i => $v){
+
+            if (isset($v['operador']) && isset($v['valor'])){
+                if (!empty($v['valor']) || $v['operador'] == 'empty'){
+
+                    switch ($v['operador']){
+                        case 'equals':
+                            $sql .= " AND t.{$i} = '${v['valor']}'";
+                            break;
+                        case 'noequals':
+                            $sql .= " AND t.{$i} != '${v['valor']}'";
+                            break;
+                        case 'like':
+                            $sql .= " AND t.{$i} LIKE '${v['valor']}%'";
+                            break;
+                        case 'nolike':
+                            $sql .= " AND t.{$i} NOT LIKE '${v['valor']}%'";
+                            break;
+                        case 'empty':
+                            $sql .= " AND t.{$i} = ''";
+                            break;
+                    }
+                }
+            } else {
+                if (!empty($v)){
+                    if ($v == 'isNull'){
+                        $sql .= " AND t.{$i} IS NULL ";
+                    } elseif ($v == 'isNotNull'){
+                        $sql .= " AND t.{$i} IS NOT NULL ";
+                    } elseif ($v == 'isEmpty'){
+                        $sql .= " AND t.{$i} = '' ";
+                    } elseif ($v == 'isNotEmpty'){
+                        $sql .= " AND t.{$i} != '' ";
+                    } elseif (is_array($v)){
+                        $sql .= " AND t.{$i} BETWEEN '{$v[0]}' AND '{$v[1]}' ";
+                    } elseif (strpbrk($v, ',')){
+                        $sql .= " AND t.{$i} IN({$v}) ";
+                    } elseif (strpbrk($v, '%')){
+                        $sql .= " AND t.{$i} LIKE '{$v}%' ";
+                    } else {
+                        $sql .= " AND t.{$i} = '{$v}'";
+                    }
+                }
+            }
+        }
+
+        return $sql;
+    }
 }
