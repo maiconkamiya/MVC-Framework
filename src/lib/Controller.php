@@ -93,7 +93,7 @@ class Controller extends System {
             if (Router::$modCriativa){
                 $reflector = new \ReflectionClass(get_called_class());
 
-                $this->path = dirname($reflector->getFileName()) . '/../view//' . $this->getController() . '/' . $this->pathRender . '.phtml';
+                $this->path = dirname($reflector->getFileName()) . '/../view/' . $this->getController() . '/' . $this->pathRender . '.phtml';
             } else {
                 $this->path = 'src/view/' . $this->getArea() . '/' . $this->getController() . '/' . $this->pathRender . '.phtml';
             }
