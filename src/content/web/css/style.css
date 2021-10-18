@@ -1,0 +1,135 @@
+html,
+body {
+    overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+
+body {
+    padding-top: 56px;
+}
+
+@media (max-width: 991.98px) {
+    .offcanvas-collapse {
+        position: fixed;
+        top: 56px; /* Height of navbar */
+        bottom: 0;
+        left: 100%;
+        width: 100%;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        overflow-y: auto;
+        visibility: hidden;
+        background-color: #343a40;
+        transition: transform .3s ease-in-out, visibility .3s ease-in-out;
+    }
+    .offcanvas-collapse.open {
+        visibility: visible;
+        transform: translateX(-100%);
+    }
+}
+
+.nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    color: rgba(255, 255, 255, .75);
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.nav-underline .navbar-brand,
+.nav-underline .nav-link {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: .875rem;
+    color: #6c757d;
+}
+
+.nav-underline .nav-link:hover {
+    color: #007bff;
+}
+
+.nav-underline .active {
+    font-weight: 500;
+    color: #343a40;
+}
+
+.bg-purple {
+    background-color: #6f42c1;
+}
+
+.table tr td input[type="text"],
+.table tr td select {
+    margin: 0;
+}
+.table tr td input[type="text"],
+.table tr td select,
+.table tr td button {
+    padding: 2px 4px;
+}
+
+div[id^='rotina-'] table {
+    font-size: 10pt;
+}
+
+div[id^='rotina-'] table tbody tr td:not(.td-form)
+div[id^='rotina-'] table tbody tr.group td {
+    padding: 3px 7px;
+}
+div[id^='rotina-'] table tbody tr td.td-form {
+    padding: 3px 0;
+}
+div[id^='rotina-'] #table-filtro_wrapper .dataTables_scrollHead,
+div[id^='rotina-'] #table-formulario_wrapper .dataTables_scrollHead{
+    display: none;
+}
+div[id^='rotina-'] #table-filtro_wrapper .dataTables_scrollBody,
+div[id^='rotina-'] #table-formulario_wrapper .dataTables_scrollBody{
+    margin-top: 7px;
+}
+div[id^='rotina-'] table#table-filtro tr td:first-child,
+div[id^='rotina-'] table#table-formulario tr td:first-child{
+    width: 190px;
+}
+
+div[id^='rotina-'] table {
+    background: #fff;
+}
+
+div.dataTables_scrollBody {
+    border-left: none !important;
+}
+
+div[id^='rotina-'] div#table-resultado_wrapper table thead th { white-space: nowrap; }
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
