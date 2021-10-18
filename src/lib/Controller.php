@@ -35,7 +35,15 @@ class Controller extends System {
         if (is_null($this->layout)) {
             $this->render();
         } else {
-            $this->layout = "src/content/{$this->getArea()}/shared/{$this->layout}.phtml";
+
+            if (Router::$modCriativa){
+                $reflector = new \ReflectionClass(get_called_class());
+
+                $this->layout = dirname($reflector->getFileName()) . '/../content/shared/' . $this->layout . '.phtml';
+            } else {
+                $this->layout = "src/content/{$this->getArea()}/shared/{$this->layout}.phtml";
+            }
+
             if (file_exists($this->layout)) {
                 $this->render($this->layout);
             } else {
@@ -85,7 +93,7 @@ class Controller extends System {
             if (Router::$modCriativa){
                 $reflector = new \ReflectionClass(get_called_class());
 
-                $this->path = dirname($reflector->getFileName()) . '/../view/' . $this->pathRender . '.phtml';
+                $this->path = dirname($reflector->getFileName()) . '/../view//' . $this->getController() . '/' . $this->pathRender . '.phtml';
             } else {
                 $this->path = 'src/view/' . $this->getArea() . '/' . $this->getController() . '/' . $this->pathRender . '.phtml';
             }

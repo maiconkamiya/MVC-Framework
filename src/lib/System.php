@@ -37,11 +37,13 @@ class System extends Router {
                 Router::$onDefault = false;
             }
         }
-        
-        if (Router::$onDefault && preg_match("/^". Router::$prefixCriativa ."/", $this->explode[0])){
-                $this->area = $this->explode[0];
-                Router::$onDefault = false;
-                Router::$modCriativa = true;
+
+        if ( (Router::$onDefault && preg_match("/^". Router::$prefixCriativa ."/", $this->explode[0])) ){
+            $this->area = $this->explode[0];
+            Router::$onDefault = false;
+            Router::$modCriativa = true;
+        } elseif ( (Router::$onDefault && Router::$prefixCriativa == Router::$routerOnDefault) ){
+            Router::$modCriativa = true;
         }
 
         $this->area = empty($this->area) ? Router::$routers[Router::$routerOnDefault] : $this->area;
