@@ -15,7 +15,9 @@ class Router {
     protected static $modCriativa = false;
 
     public static function setRouters($router){
-        self::$routers[] = $router;
+        foreach ($router as $i => $v){
+            self::$routers[$i] = $v;
+        }
     }
 
     public static function setRouterOnDefault($router){
