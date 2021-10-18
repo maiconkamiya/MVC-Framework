@@ -29,11 +29,16 @@ class System extends Router {
     }
     private function _setArea(){
         Router::$onDefault = true;
+        Router::$modCriativa = false;
 
         foreach (Router::$routers as $i => $v){
             if (Router::$onDefault && $this->explode[0] == $i){
                 $this->area = $v;
                 Router::$onDefault = false;
+            } elseif (Router::$onDefault && strpbrk($this->explode[0], $i)){
+                $this->area = $this->explode[0];
+                Router::$onDefault = false;
+                Router::$modCriativa = true;
             }
         }
 
@@ -103,7 +108,13 @@ class System extends Router {
     }
 
     public function run(){
-        $this->init = 'mvc\\controller\\' . $this->area . '\\' . $this->controller . 'Controller';
+        
+        if (Router::$modCriativa){
+            $this->init = $this->area . '\\controller\\' . $this->controller . 'Controller';
+        } else {
+            $this->init = 'mvc\\controller\\' . $this->area . '\\' . $this->controller . 'Controller';
+        }
+        
         $this->_validarController();
         $this->init = new $this->init();
         $this->_validarAction();
