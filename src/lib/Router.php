@@ -8,7 +8,7 @@ class Router {
         'criativa' => 'criativa'
     );
 
-    protected static $routerOnDefault = 'web';
+    protected static $routerOnDefault = 'criativa';
 
     protected static $onDefault = true;
 
