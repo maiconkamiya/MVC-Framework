@@ -12,6 +12,8 @@ class Router {
 
     protected static $onDefault = true;
 
+    protected static $prefixCriativa = 'criativa';
+    
     protected static $modCriativa = false;
 
     public static function setRouters($router){
