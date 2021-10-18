@@ -35,7 +35,7 @@ class System extends Router {
             if (Router::$onDefault && $this->explode[0] == $i){
                 $this->area = $v;
                 Router::$onDefault = false;
-            } elseif (Router::$onDefault && strpbrk($this->explode[0], $i)){
+            } elseif (Router::$onDefault && preg_match("/^{$i}/", $this->explode[0])){
                 $this->area = $this->explode[0];
                 Router::$onDefault = false;
                 Router::$modCriativa = true;
