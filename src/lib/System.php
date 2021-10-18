@@ -93,7 +93,7 @@ class System extends Router {
     private function _validarController(){
         if (!(class_exists($this->init))) {
             header("HTTP/1.0 404 Not Found");
-            define('ERROR', 'Não foi localizado o Controller: ' . $this->controller);
+            define('ERROR', "Não foi localizado o Controller: {$this->controller} Area: {$this->area}");
             echo ERROR;
             exit();
         }
@@ -101,7 +101,7 @@ class System extends Router {
     private function _validarAction(){
         if (!(method_exists($this->init, $this->action))) {
             header("HTTP/1.0 404 Not Found");
-            define('ERROR', 'Não foi localizado o Action: ' . $this->action);
+            define('ERROR', "Não foi localizado o Action: {$this->action} Controller {$this->controller} Area: {$this->area}");
             echo ERROR;
             exit();
         }
