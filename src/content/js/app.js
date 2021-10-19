@@ -47,11 +47,11 @@ var fn = {
                 $.each(r, function(i,v){
                     if (v.sub.length > 0 ||  v.dir != ''){
                         code += `<li class="nav-item ${v.sub.length > 0 ? 'dropdown' : ''}">`;
-                        code += `<a class="nav-link dropdown-toggle" ${v.sub.length > 0 ? 'id="raiz-'+v.codrotina+'" data-bs-toggle="dropdown" aria-expanded="false"' : ''} ${(v.dir != "" ? (v.dialog == 'S' ? 'dialog="open" dir="'+ v.dir +'" size="'+ v.dsize +'" title="'+ v.nome +'"' : 'href="#/'+ v.dir +'"') : 'href="#"')}>${v.nome}</a>`;
+                        code += `<a class="nav-link dropdown-toggle" ${v.sub.length > 0 ? 'id="raiz-'+v.codrotina+'" data-bs-toggle="dropdown" aria-expanded="false"' : ''} ${(v.dir != "" ? (v.dialog == 'S' ? 'dialog="open" uri="'+ v.dir +'" size="'+ v.dsize +'" title="'+ v.nome +'"' : 'href="#/'+ v.dir +'"') : 'href="#"')}>${v.nome}</a>`;
                         if(v.sub.length > 0 && v.dir == ''){
                             code += `<ul class="dropdown-menu" aria-labelledby="raiz-${v.codrotina}">`;
                             $.each(v.sub, function(ir, vr){
-                            code += `<li><a class="dropdown-item" ${(vr.dir != "" ? (vr.dialog == 'S' ? 'dialog="open" dir="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : 'href="#/'+ vr.dir +'"') : '')}>${vr.nome}</a></li>`;
+                            code += `<li><a class="dropdown-item" ${(vr.dir != "" ? (vr.dialog == 'S' ? 'dialog="open" uri="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : 'href="#/'+ vr.dir +'"') : '')}>${vr.nome}</a></li>`;
                             });
                             code += `</ul>`;
                             }
