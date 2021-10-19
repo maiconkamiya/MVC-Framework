@@ -42,7 +42,7 @@ var fn = {
             },'JSON');
         },
         rotina: function(){
-            $.get(window.Area + 'criativaRoutine/getlist', function(r){
+            $.get(window.Area + 'criativaRoutine/routine/getlist', function(r){
 
                 var code;
 
