@@ -130,3 +130,7 @@ window.addEventListener('popstate', function(event)
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+$(document).ready(function(){
+    fn.load.rotina();
+});
