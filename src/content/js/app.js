@@ -47,16 +47,18 @@ var fn = {
                 var code;
 
                 $.each(r, function(i,v){
-                    code += `<li class="nav-item ${v.sub.length > 0 ? 'dropdown' : ''}">`;
-                    code += `<a class="nav-link active" aria-current="page" id="raiz-${v.codrotina}" ${(v.dir != "" ? (v.dialog == 'S' ? 'dir="'+ v.dir +'" size="'+ v.dsize +'" title="'+ v.nome +'"' : 'href="#/'+ v.dir +'"') : '')}>${v.nome}</a>`;
+                    if (v.sub.length > 0 ||  v.dir != ''){
+                        code += `<li class="nav-item ${v.sub.length > 0 ? 'dropdown' : ''}">`;
+                        code += `<a class="nav-link active" aria-current="page" id="raiz-${v.codrotina}" ${(v.dir != "" ? (v.dialog == 'S' ? 'dir="'+ v.dir +'" size="'+ v.dsize +'" title="'+ v.nome +'"' : 'href="#/'+ v.dir +'"') : '')}>${v.nome}</a>`;
                         if(v.sub.length > 0 && v.dir == ''){
-                        code += `<ul class="dropdown-menu" aria-labelledby="raiz-${v.codrotina}">`;
+                            code += `<ul class="dropdown-menu" aria-labelledby="raiz-${v.codrotina}">`;
                             $.each(v.sub, function(ir, vr){
-                        code += `<li><a class="dropdown-item" ${(vr.dir != "" ? (vr.dialog == 'S' ? 'dir="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : 'href="#/'+ vr.dir +'"') : '')}>${vr.nome}</a></li>`;
+                            code += `<li><a class="dropdown-item" ${(vr.dir != "" ? (vr.dialog == 'S' ? 'dir="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : 'href="#/'+ vr.dir +'"') : '')}>${vr.nome}</a></li>`;
                             });
-                        code += `</ul>`;
-                        }
-                    code += `</li>`;
+                            code += `</ul>`;
+                            }
+                        code += `</li>`;
+                    }
                 });
 
                 $('#list-rotina').html(code);
