@@ -43,13 +43,11 @@ var fn = {
         },
         rotina: function(){
             $.get(window.Area + 'criativaRoutine/routine/getlist', function(r){
-
-                var code;
-
+                var code = "";
                 $.each(r, function(i,v){
                     if (v.sub.length > 0 ||  v.dir != ''){
                         code += `<li class="nav-item ${v.sub.length > 0 ? 'dropdown' : ''}">`;
-                        code += `<a class="nav-link active" aria-current="page" id="raiz-${v.codrotina}" ${(v.dir != "" ? (v.dialog == 'S' ? 'dir="'+ v.dir +'" size="'+ v.dsize +'" title="'+ v.nome +'"' : 'href="#/'+ v.dir +'"') : '')}>${v.nome}</a>`;
+                        code += `<a class="nav-link dropdown-toggle" ${v.sub.length > 0 ? 'id="raiz-'+v.codrotina+'" data-bs-toggle="dropdown" aria-expanded="false"' : ''} ${(v.dir != "" ? (v.dialog == 'S' ? 'dir="'+ v.dir +'" size="'+ v.dsize +'" title="'+ v.nome +'"' : 'href="#/'+ v.dir +'"') : 'href="#"')}>${v.nome}</a>`;
                         if(v.sub.length > 0 && v.dir == ''){
                             code += `<ul class="dropdown-menu" aria-labelledby="raiz-${v.codrotina}">`;
                             $.each(v.sub, function(ir, vr){
@@ -60,7 +58,6 @@ var fn = {
                         code += `</li>`;
                     }
                 });
-
                 $('#list-rotina').html(code);
             },'JSON');
         }
