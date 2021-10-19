@@ -11,7 +11,7 @@ var fn = {
             var table = $(t).parents('[id^="table-"]');
             var text = table.find(`[name="${el}"]`).val();
             text=text.replace(/([-.*+?^=!:${}()|\[\]\/\\])/g,'');
-            $.get('http://localhost:82/aplicacao/result/cliente/receita/' + text, function(r){
+            $.get(window.Area + 'criativaReceita/consulta/cnpj/' + text, function(r){
                 table.find('[name="razao"]').val(r.nome);
                 table.find('[name="fantasia"]').val(r.fantasia);
                 table.find('[name="endereco"]').val(r.logradouro);
@@ -29,7 +29,7 @@ var fn = {
             var table = $(t).parents('[id^="table-"]');
             var text = table.find(`[name="${el}"]`).val();
             text=text.replace(/([-.*+?^=!:${}()|\[\]\/\\])/g,'');
-            $.get(window.Area + 'emissor/cep/consulta/' + text, function(r){
+            $.get(window.Area + 'criativaIBGE/consulta/cep/' + text, function(r){
                 if (('error' in r)==false){
                     table.find('[name="endereco"]').val(r.endereco);
                     table.find('[name="bairro"]').val(r.bairro);
@@ -39,6 +39,27 @@ var fn = {
                 } else {
                     al.dialog('warning','Pesquisa por CEP', r.error)
                 }
+            },'JSON');
+        },
+        rotina: function(){
+            $.get(window.Area + 'criativaRoutine/getlist', function(r){
+
+                var code;
+
+                $.each(r, function(i,v){
+                    code += `<li class="nav-item ${v.sub.length > 0 ? 'dropdown' : ''}">`;
+                    code += `<a class="nav-link active" aria-current="page" id="raiz-${v.codrotina}" ${(v.dir != "" ? (v.dialog == 'S' ? 'dir="'+ v.dir +'" size="'+ v.dsize +'" title="'+ v.nome +'"' : 'href="#/'+ v.dir +'"') : '')}>${v.nome}</a>`;
+                        if(v.sub.length > 0 && v.dir == ''){
+                        code += `<ul class="dropdown-menu" aria-labelledby="raiz-${v.codrotina}">`;
+                            $.each(v.sub, function(ir, vr){
+                        code += `<li><a class="dropdown-item" ${(vr.dir != "" ? (vr.dialog == 'S' ? 'dir="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : 'href="#/'+ vr.dir +'"') : '')}>${vr.nome}</a></li>`;
+                            });
+                        code += `</ul>`;
+                        }
+                    code += `</li>`;
+                });
+
+                $('#list-rotina').html(code);
             },'JSON');
         }
     },
