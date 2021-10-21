@@ -45,6 +45,8 @@ class Config {
         if (isset($con->charset)){
             self::$charset = $con->charset;
         }
+
+        define('PREFIX', self::$prefix);
     }
 
 }
