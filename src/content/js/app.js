@@ -60,6 +60,14 @@ var fn = {
                 });
                 $('#list-rotina').html(code);
             },'JSON');
+        },
+        blur: function(uri, t, el, cl){
+            $.post(window.Area + uri, t, function(r){
+                $.each(r, function(i,v){
+                    var ip = $(el).find('input[name="' + i + '"].' + cl);
+                    ip.val(v);
+                });
+            },'JSON');
         }
     },
     modal: function(uri, title, size){
@@ -104,6 +112,14 @@ $(document).on('click', '[dialog="open"]', function () {
     var size = $(this).attr('size');
 
     fn.modal(uri,title,size);
+});
+
+$(document).on('change','[blur="true"]',function(){
+    var uri = $(this).attr('blur-uri');
+    var cl = $(this).attr('blur-class');
+    var el = $(this).parents('form');
+
+    fn.load.blur(uri, $(this), el, cl);
 });
 
 var render = function(){
