@@ -212,7 +212,7 @@ class Model extends Config {
                     }
                 }
             } else {
-                if (!empty($v)){
+                if (!empty($v) && !is_numeric($v)){
                     if ($v == 'isNull'){
                         $sql .= " AND t.{$i} IS NULL ";
                     } elseif ($v == 'isNotNull'){
