@@ -3,6 +3,8 @@
 
 namespace criativa\lib;
 
+use criativa\helper\Str;
+
 class System extends Router {
     private $url;
     private $explode;
@@ -13,13 +15,26 @@ class System extends Router {
     private $init;
 
     public function __construct(){
+        $this->_security();
+        $this->_setDefine();
+
         $this->_setUrl();
         $this->_setExplode();
         $this->_setArea();
         $this->_setController();
         $this->_setAction();
         $this->_setParams();
+    }
 
+    private function _security(){
+        if (isset($_POST)) {
+            foreach ($_POST as $i => $v) {
+                $_POST[$i] = Str::clearString($v);
+            }
+        }
+    }
+
+    private function _setDefine(){
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             define('CLIENT_IP', $_SERVER['HTTP_CLIENT_IP']);
         } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
