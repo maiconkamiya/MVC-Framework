@@ -19,6 +19,14 @@ class System extends Router {
         $this->_setController();
         $this->_setAction();
         $this->_setParams();
+
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            define('CLIENT_IP', $_SERVER['HTTP_CLIENT_IP']);
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            define('CLIENT_IP', $_SERVER['HTTP_X_FORWARDED_FOR']);
+        } else {
+            define('CLIENT_IP', $_SERVER['REMOTE_ADDR']);
+        }
     }
 
     private function _setUrl(){
