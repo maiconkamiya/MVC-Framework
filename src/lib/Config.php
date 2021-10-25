@@ -21,6 +21,16 @@ class Config {
 
     protected static $charset = 'utf8';
 
+    private static $layoutDefault = null;
+
+    public static function setLayoutDefault($value){
+        self::$layoutDefault = $value;
+    }
+
+    public static function getLayoutDefault(){
+        return self::$layoutDefault;
+    }
+
     public static function setConfig($con){
         if (isset($con->prefix)){
             self::$prefix = $con->prefix;
@@ -28,7 +38,7 @@ class Config {
 
         if (isset($con->host)){
             self::$host = $con->host;
-        }
+    }
 
         if (isset($con->user)){
             self::$user = $con->user;

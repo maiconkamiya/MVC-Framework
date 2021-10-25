@@ -37,9 +37,12 @@ class Controller extends System {
         } else {
 
             if (Router::$modCriativa){
-                $reflector = new \ReflectionClass(get_called_class());
-
-                $this->layout = dirname($reflector->getFileName()) . '/../content/shared/' . $this->layout . '.phtml';
+                if (is_null(Config::getLayoutDefault())){
+                    $reflector = new \ReflectionClass(get_called_class());
+                    $this->layout = dirname($reflector->getFileName()) . '/../content/shared/' . $this->layout . '.phtml';
+                } else {
+                    $this->layout = Config::getLayoutDefault();
+                }
             } else {
                 $this->layout = "src/content/{$this->getArea()}/shared/{$this->layout}.phtml";
             }
