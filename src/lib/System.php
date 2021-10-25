@@ -3,6 +3,8 @@
 
 namespace criativa\lib;
 
+use criativa\helper\Str;
+
 class System extends Router {
     private $url;
     private $explode;
