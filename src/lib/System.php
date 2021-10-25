@@ -35,12 +35,14 @@ class System extends Router {
     }
 
     private function _setDefine(){
-        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            define('CLIENT_IP', $_SERVER['HTTP_CLIENT_IP']);
-        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            define('CLIENT_IP', $_SERVER['HTTP_X_FORWARDED_FOR']);
-        } else {
-            define('CLIENT_IP', $_SERVER['REMOTE_ADDR']);
+        if (!defined('CLIENT_IP')){
+            if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                define('CLIENT_IP', $_SERVER['HTTP_CLIENT_IP']);
+            } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                define('CLIENT_IP', $_SERVER['HTTP_X_FORWARDED_FOR']);
+            } else {
+                define('CLIENT_IP', $_SERVER['REMOTE_ADDR']);
+            }
         }
     }
 
