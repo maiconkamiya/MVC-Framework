@@ -55,8 +55,10 @@ var fn = {
                         var tItem = item;
 
                         tItem = tItem.replace('[nome]', v.nome);
+                        tItem = tItem.replace('[icon]', v.icon);
                         tItem = tItem.replace('[class]', (v.sub.length > 0 ? 'dropdown' : ''));
-                        tItem = tItem.replace('[attr]', (v.dir != "" ? (v.dialog == 'S' ? 'dialog="open" uri="'+ v.dir +'" size="'+ v.dsize +'" title="'+ v.nome +'"' : 'href="#/'+ v.dir +'"') : 'href="#"'));
+                        tItem = tItem.replace('[attr]', (v.dir != "" ? (v.dialog == 'S' ? 'dialog="open" uri="'+ v.dir +'" size="'+ v.dsize +'" title="'+ v.nome +'"' : 'href="#/'+ v.dir +'"') : ''));
+                        tItem = tItem.replace('[uri]', (v.dir != "" ? (v.dialog == 'S' ? '' : '#/'+ v.dir ) : '#'));
                         tItem = tItem.replace('[sub]', (v.sub.length > 0 ? sub : ''));
 
                         var lSubItem = "";
@@ -66,6 +68,8 @@ var fn = {
                             var tSubItem = subitem;
 
                             tSubItem = tSubItem.replace('[nome]', vr.nome);
+                            tSubItem = tSubItem.replace('[icon]', vr.icon);
+                            tSubItem = tSubItem.replace('[class]', '');
                             tSubItem = tSubItem.replace('[attr]', (vr.dir != "" ? (vr.dialog == 'S' ? 'dialog="open" uri="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : 'href="#/'+ vr.dir +'"') : ''));
 
                             lSubItem += tSubItem;
