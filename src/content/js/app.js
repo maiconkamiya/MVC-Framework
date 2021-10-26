@@ -57,7 +57,7 @@ var fn = {
                         tItem = tItem.replace('[nome]', v.nome);
                         tItem = tItem.replace('[icon]', v.icon);
                         tItem = tItem.replace('[class]', (v.sub.length > 0 ? 'sidenav-toggle' : ''));
-                        tItem = tItem.replace('[attr]', (v.dir != "" ? (v.dialog == 'S' ? 'dialog="open" uri="'+ v.dir +'" size="'+ v.dsize +'" title="'+ v.nome +'"' : 'href="#/'+ v.dir +'"') : ''));
+                        tItem = tItem.replace('[attr]', (v.dir != "" ? (v.dialog == 'S' ? 'dialog="open" uri="'+ v.dir +'" size="'+ v.dsize +'" title="'+ v.nome +'"' : '') : ''));
                         tItem = tItem.replace('[uri]', (v.dir != "" ? (v.dialog == 'S' ? '' : '#/'+ v.dir ) : '#'));
                         tItem = tItem.replace('[sub]', (v.sub.length > 0 ? sub : ''));
 
@@ -70,7 +70,8 @@ var fn = {
                             tSubItem = tSubItem.replace('[nome]', vr.nome);
                             tSubItem = tSubItem.replace('[icon]', vr.icon);
                             tSubItem = tSubItem.replace('[class]', '');
-                            tSubItem = tSubItem.replace('[attr]', (vr.dir != "" ? (vr.dialog == 'S' ? 'dialog="open" uri="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : 'href="#/'+ vr.dir +'"') : ''));
+                            tSubItem = tSubItem.replace('[attr]', (vr.dir != "" ? (vr.dialog == 'S' ? 'dialog="open" uri="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : '') : ''));
+                            tSubItem = tSubItem.replace('[uri]', (vr.dir != "" ? (vr.dialog == 'S' ? '' : '#/'+ vr.dir ) : '#'));
 
                             lSubItem += tSubItem;
                         });
