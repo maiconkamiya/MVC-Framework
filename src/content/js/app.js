@@ -44,18 +44,47 @@ var fn = {
         rotina: function(){
             $.get(window.Area + 'criativaRoutine/routine/getlist', function(r){
                 var code = "";
+
+                var item = template.rotina.item;
+                var subitem = template.rotina.subitem;
+                var sub = template.rotina.sub;
+
                 $.each(r, function(i,v){
                     if (v.sub.length > 0 ||  v.dir != ''){
-                        code += `<li class="nav-item ${v.sub.length > 0 ? 'dropdown' : ''}">`;
-                        code += `<a class="nav-link dropdown-toggle" ${v.sub.length > 0 ? 'id="raiz-'+v.codrotina+'" data-bs-toggle="dropdown" aria-expanded="false"' : ''} ${(v.dir != "" ? (v.dialog == 'S' ? 'dialog="open" uri="'+ v.dir +'" size="'+ v.dsize +'" title="'+ v.nome +'"' : 'href="#/'+ v.dir +'"') : 'href="#"')}>${v.nome}</a>`;
-                        if(v.sub.length > 0 && v.dir == ''){
-                            code += `<ul class="dropdown-menu" aria-labelledby="raiz-${v.codrotina}">`;
-                            $.each(v.sub, function(ir, vr){
-                            code += `<li><a class="dropdown-item" ${(vr.dir != "" ? (vr.dialog == 'S' ? 'dialog="open" uri="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : 'href="#/'+ vr.dir +'"') : '')}>${vr.nome}</a></li>`;
-                            });
-                            code += `</ul>`;
-                            }
-                        code += `</li>`;
+
+                        var tItem = item;
+
+                        tItem = tItem.replace('[nome]', v.nome);
+                        tItem = tItem.replace('[class]', (v.sub.length > 0 ? 'dropdown' : ''));
+                        tItem = tItem.replace('[attr]', (v.dir != "" ? (v.dialog == 'S' ? 'dialog="open" uri="'+ v.dir +'" size="'+ v.dsize +'" title="'+ v.nome +'"' : 'href="#/'+ v.dir +'"') : 'href="#"'));
+                        tItem = tItem.replace('[sub]', (v.sub.length > 0 ? sub : ''));
+
+                        var lSubItem = "";
+
+                        $.each(v.sub, function(ir, vr){
+
+                            var tSubItem = subitem;
+
+                            tSubItem = tSubItem.replace('[nome]', vr.nome);
+                            tSubItem = tSubItem.replace('[attr]', (vr.dir != "" ? (vr.dialog == 'S' ? 'dialog="open" uri="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : 'href="#/'+ vr.dir +'"') : ''));
+
+                            lSubItem += tSubItem;
+                        });
+
+                        tItem = tItem.replace('[subitem]', lSubItem);
+                        code += tItem;
+                        /*
+                         code += `<li class="nav-item ${}">`;
+                         code += `<a class="nav-link dropdown-toggle" ${v.sub.length > 0 ? 'id="raiz-'+v.codrotina+'" data-bs-toggle="dropdown" aria-expanded="false"' : ''} ${(v.dir != "" ? (v.dialog == 'S' ? 'dialog="open" uri="'+ v.dir +'" size="'+ v.dsize +'" title="'+ v.nome +'"' : 'href="#/'+ v.dir +'"') : 'href="#"')}>${v.nome}</a>`;
+                         if(v.sub.length > 0 && v.dir == ''){
+                         code += `<ul class="dropdown-menu" aria-labelledby="raiz-${v.codrotina}">`;
+                         $.each(v.sub, function(ir, vr){
+                         code += `<li><a class="dropdown-item" ${(vr.dir != "" ? (vr.dialog == 'S' ? 'dialog="open" uri="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : 'href="#/'+ vr.dir +'"') : '')}>${vr.nome}</a></li>`;
+                         });
+                         code += `</ul>`;
+                         }
+                         code += `</li>`;
+                        */
                     }
                 });
                 $('#list-rotina').html(code);
