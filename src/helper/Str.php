@@ -79,7 +79,8 @@ class Str {
     }
 
     public static function cleanNotaString($value){
-        return str_replace(array('.','/','-','(',')',' ',"'"),'',$value);
+        $value = preg_replace('/[\n\r\t]/','', $value);
+        return str_replace(array('.','/','-','(',')',"'"),'',$value);
     }
 
     public static function cleanText($value){
