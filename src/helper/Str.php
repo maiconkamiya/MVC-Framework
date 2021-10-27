@@ -3,6 +3,12 @@
 namespace criativa\helper;
 
 class Str {
+
+    //Se vazio return especifico
+    public static function IsEmpty($value, $return){
+        return (empty($value) ? $return : $value);
+    }
+
     public static function labelName($string)
     {
         $ex = explode(' ', $string);

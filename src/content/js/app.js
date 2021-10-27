@@ -68,7 +68,7 @@ var fn = {
                             var tSubItem = subitem;
 
                             tSubItem = tSubItem.replace('[nome]', vr.nome);
-                            tSubItem = tSubItem.replace('[icon]', vr.icon);
+                            tSubItem = tSubItem.replace('[icon]', (vr.icon != '' ? '<' : ''));
                             tSubItem = tSubItem.replace('[class]', '');
                             tSubItem = tSubItem.replace('[attr]', (vr.dir != "" ? (vr.dialog == 'S' ? 'dialog="open" uri="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : '') : ''));
                             tSubItem = tSubItem.replace('[uri]', (vr.dir != "" ? (vr.dialog == 'S' ? '' : '#/'+ vr.dir ) : '#'));
