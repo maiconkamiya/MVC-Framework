@@ -9,6 +9,10 @@ class Str {
         return (empty($value) ? $return : $value);
     }
 
+    public static function Number($valor, $decimal = 0, $zero = true){
+        return $valor == 0 ? ($zero ? number_format($valor, $decimal,'.','')  : null) : number_format($valor, $decimal,'.','');
+    }
+
     public static function labelName($string)
     {
         $ex = explode(' ', $string);
