@@ -133,7 +133,7 @@ var fn = {
     modalClose: function (id) {
         setTimeout(function () {
             $('body').find('div#modal-' + id).remove();
-        }, 500);
+        }, 1000);
     }
 };
 
