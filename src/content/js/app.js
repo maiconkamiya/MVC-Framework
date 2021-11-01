@@ -123,7 +123,10 @@ var fn = {
 
             $('body').append(html);
 
-            $('#modal-' + id).modal('show');
+            $('#modal-' + id).modal({
+                keyboard: false,
+                backdrop: false
+            });
         });
 
     },
