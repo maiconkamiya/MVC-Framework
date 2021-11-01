@@ -114,7 +114,7 @@ var fn = {
                 + '<div class="modal-content">'
                 + '<div class="modal-header">'
                 + '<h5 class="modal-title" id="staticBackdropLabel">' + title + '</h5>'
-                + '<button type="button" class="btn-close close" dir="' + id + '"  data-bs-dismiss="modal" aria-label="Close">x</button>'
+                + '<button type="button" class="close" dir="' + id + '" data-dismiss="modal" aria-label="Close">x</button>'
                 + '</div>'
                 + h
                 + '</div>'
