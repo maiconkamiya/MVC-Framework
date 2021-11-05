@@ -222,7 +222,9 @@ class Model extends Config {
                     } elseif ($v == 'isNotEmpty'){
                         $sql .= " AND t.{$i} != '' ";
                     } elseif (is_array($v)){
-                        $sql .= " AND t.{$i} BETWEEN '{$v[0]}' AND '{$v[1]}' ";
+                        if (!empty($v[0]) && !empty($v[1])){
+                            $sql .= " AND t.{$i} BETWEEN '{$v[0]}' AND '{$v[1]}' ";
+                        }
                     } elseif (strpbrk($v, ',')){
                         $sql .= " AND t.{$i} IN({$v}) ";
                     } elseif (strpbrk($v, '%')){
