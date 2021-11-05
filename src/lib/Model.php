@@ -8,6 +8,8 @@
 
 namespace criativa\lib;
 
+use criativa\helper\Str;
+
 class Model extends Config {
 
     protected $con;
@@ -223,7 +225,7 @@ class Model extends Config {
                         $sql .= " AND t.{$i} != '' ";
                     } elseif (is_array($v)){
                         if (!empty($v[0]) && !empty($v[1])){
-                            $sql .= " AND t.{$i} BETWEEN '{$v[0]}' AND '{$v[1]}' ";
+                            $sql .= " AND t.{$i} BETWEEN '".Str::convertData($v[0])." 00:00:00' AND '".Str::convertData($v[1])." 23:59:59' ";
                         }
                     } elseif (strpbrk($v, ',')){
                         $sql .= " AND t.{$i} IN({$v}) ";
