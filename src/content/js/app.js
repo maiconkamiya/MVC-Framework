@@ -3,6 +3,16 @@ var al = {
         alert(descricao);
     },
     confirm: function(){}
+};
+
+var spn = {
+    show: function(text){
+        $('.spin').css({'display':'block'});
+        $('.spin .caption').text(text);
+    },
+    hide: function(){
+        $('.spin').css({'display':'none'});
+    }
 }
 
 var fn = {
