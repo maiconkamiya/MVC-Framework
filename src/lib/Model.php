@@ -211,16 +211,19 @@ class Model extends Config {
 
                     switch ($v['operador']){
                         case 'equals':
-                            $sql .= " AND t.{$i} = '${v['valor']}'";
+                            $sql .= " AND t.{$i} = '{$v['valor']}'";
                             break;
                         case 'noequals':
-                            $sql .= " AND t.{$i} != '${v['valor']}'";
+                            $sql .= " AND t.{$i} != '{$v['valor']}'";
                             break;
                         case 'like':
-                            $sql .= " AND t.{$i} LIKE '${v['valor']}%'";
+                            $sql .= " AND t.{$i} LIKE '{$v['valor']}%'";
                             break;
                         case 'nolike':
-                            $sql .= " AND t.{$i} NOT LIKE '${v['valor']}%'";
+                            $sql .= " AND t.{$i} NOT LIKE '{$v['valor']}%'";
+                            break;
+                        case 'range':
+                            $sql .= " AND (t.{$i} BETWEEN '{$v['valor'][0]}' AND '{$v['valor'][1]}')";
                             break;
                         case 'empty':
                             $sql .= " AND t.{$i} = ''";
@@ -228,6 +231,7 @@ class Model extends Config {
                     }
                 }
             } else {
+
                 if (!empty($v) || is_numeric($v)){
                     if ($v == 'isNull'){
                         $sql .= " AND t.{$i} IS NULL ";
