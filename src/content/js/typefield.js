@@ -34,7 +34,7 @@ var typefield = function(element){
             field = `<select name="${element.coluna}" class="form-control ${element.flagEditavel == 'S' ? 'f-input' : ''} ${element.classIndex}" ${element.flagObrigatorio == 'S' ? 'required' : ''}>${options}</select>`;
             break;
         case 'textRange':
-            field = `<input type="text" class="form-control ${element.flagEditavel == 'S' ? 'f-input' : ''} ${element.classIndex}" name="${element.coluna}[]" value="${value}" autocomplete="off" ${element.flagBloqueado == 'S' ? ' disabled' : ''} ${element.flagObrigatorio == 'S' ? 'required' : ''}><input type="text" class="form-control ${element.flagEditavel == 'S' ? 'f-input' : ''} ${element.classIndex}" name="${element.coluna}[]" value="${value}" autocomplete="off" ${element.flagBloqueado == 'S' ? ' disabled' : ''} ${element.flagObrigatorio == 'S' ? 'required' : ''}>`;
+            field = `<input type="text" class="form-control ${element.flagEditavel == 'S' ? 'f-input' : ''} ${element.classIndex}" name="${element.coluna}[]" value="${value}" autocomplete="off" style="width:50%; display:inline-block;" ${element.flagBloqueado == 'S' ? ' disabled' : ''} ${element.flagObrigatorio == 'S' ? 'required' : ''}><input type="text" class="form-control ${element.flagEditavel == 'S' ? 'f-input' : ''} ${element.classIndex}" name="${element.coluna}[]" value="${value}" autocomplete="off" style="width:50%; display:inline-block;" ${element.flagBloqueado == 'S' ? ' disabled' : ''} ${element.flagObrigatorio == 'S' ? 'required' : ''}>`;
             break;
         default:
             if (element.flagBotaoForm == 'S'){
