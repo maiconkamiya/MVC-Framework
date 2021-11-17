@@ -81,7 +81,7 @@ var fn = {
                             tSubItem = tSubItem.replace('[icon]', (vr.icon != '' ? '<' : ''));
                             tSubItem = tSubItem.replace('[class]', '');
                             tSubItem = tSubItem.replace('[attr]', (vr.dir != "" ? (vr.dialog == 'S' ? 'dialog="open" uri="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : '') : ''));
-                            tSubItem = tSubItem.replace('[uri]', (vr.dir != "" ? (vr.dialog == 'S' ? '' : '#/'+ vr.dir ) : '#'));
+                            tSubItem = tSubItem.replace('[uri]', (vr.dir != "" ? (vr.dialog == 'S' ? 'javascript:;' : '#/'+ vr.dir ) : '#'));
 
                             lSubItem += tSubItem;
                         });
