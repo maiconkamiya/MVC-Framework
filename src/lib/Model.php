@@ -16,7 +16,7 @@ class Model extends Config {
 
     private $db;
 
-    public function __construct(){
+    public function __construct($driver = 'mysql', $param = null){
         $this->db = self::$dbname;
 
         if (!defined('TIME_ZONE')){
@@ -24,10 +24,24 @@ class Model extends Config {
         }
 
         try {
-            $this->con = new \PDO("mysql:host=" . self::$host . ";dbname=" . self::$dbname, self::$user, self::$pwd);
-            $this->con->exec("set names " . self::$charset);
-            $this->con->exec("SET GLOBAL sql_mode=''");
-            $this->con->exec("SET GLOBAL time_zone='".TIME_ZONE."'");
+
+            switch($driver){
+                case 'mysql':
+                    $this->con = new \PDO("mysql:host=" . self::$host . ";dbname=" . self::$dbname, self::$user, self::$pwd);
+                    $this->con->exec("set names " . self::$charset);
+                    $this->con->exec("SET GLOBAL sql_mode=''");
+                    $this->con->exec("SET GLOBAL time_zone='".TIME_ZONE."'");
+                    break;
+                case 'firebird':
+                    $this->con = new \PDO("firebird:dbname=" . $param->dbname . ";host=" . $param->host . ";charset=". self::$charset,$param->user,$param->pass);
+                    break;
+                case 'oracle':
+                    $this->con = new \PDO("oci:dbname=".$param->tns,$param->user,$param->pass);
+                    break;
+                case 'mdb':
+                    //$this->con = new \PDO("odbc:Driver={Microsoft Access Driver (*.mdb)};Dbq=C:\wamp\www\ERPEmpresarial\db\inforlub.mdb;Uid=Admin;Pwd=masterkey");
+                    break;
+            }
 
             $this->con->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch(\PDOException $ex){
