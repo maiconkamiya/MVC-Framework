@@ -147,26 +147,6 @@ var fn = {
     }
 };
 
-$('.dec0nozerononegative').maskMoney({decimal: '.', thousands: '', allowZero: false, allowNegative: false, precision: 0});
-$('.dec0zerononegative').maskMoney({decimal: '.', thousands: '', allowZero: true, allowNegative: false, precision: 0});
-$('.dec0zeronegative').maskMoney({decimal: '.', thousands: '', allowZero: true, allowNegative: true, precision: 0});
-
-$('.dec1nozerononegative').maskMoney({decimal: '.', thousands: '', allowZero: false, allowNegative: false, precision: 1});
-$('.dec1zerononegative').maskMoney({decimal: '.', thousands: '', allowZero: true, allowNegative: false, precision: 1});
-$('.dec1zeronegative').maskMoney({decimal: '.', thousands: '', allowZero: true, allowNegative: true, precision: 1});
-
-$('.dec2nozerononegative').maskMoney({decimal: '.', thousands: '', allowZero: false, allowNegative: false, precision: 2});
-$('.dec2zerononegative').maskMoney({decimal: '.', thousands: '', allowZero: true, allowNegative: false, precision: 2});
-$('.dec2zeronegative').maskMoney({decimal: '.', thousands: '', allowZero: true, allowNegative: true, precision: 2});
-
-$('.dec3nozerononegative').maskMoney({decimal: '.', thousands: '', allowZero: false, allowNegative: false, precision: 3});
-$('.dec3zerononegative').maskMoney({decimal: '.', thousands: '', allowZero: true, allowNegative: false, precision: 3});
-$('.dec3zeronegative').maskMoney({decimal: '.', thousands: '', allowZero: true, allowNegative: true, precision: 3});
-
-$('.dec4nozerononegative').maskMoney({decimal: '.', thousands: '', allowZero: false, allowNegative: false, precision: 4});
-$('.dec4zerononegative').maskMoney({decimal: '.', thousands: '', allowZero: true, allowNegative: false, precision: 4});
-$('.dec4zeronegative').maskMoney({decimal: '.', thousands: '', allowZero: true, allowNegative: true, precision: 4});
-
 $(document).on('click', '.modal .close', function () {
     var id = $(this).attr('dir');
 
