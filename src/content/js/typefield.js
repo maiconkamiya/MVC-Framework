@@ -22,6 +22,9 @@ var typefield = function(element){
                     </div>`;
             }
             break;
+        case 'textarea':
+            field = `<textarea  class="form-control ${element.flagEditavel == 'S' ? 'f-input' : ''} ${element.classIndex}" name="${element.coluna}" ${element.flagBloqueado == 'S' ? ' disabled' : ''} ${element.flagObrigatorio == 'S' ? 'required' : ''}>${value}</textarea>`;
+            break;
         case 'select':
             var options = "";
             if (element.item != ""){
