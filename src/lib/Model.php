@@ -249,8 +249,8 @@ class Model extends Config {
                         $sql .= " AND t.{$i} IN({$v}) ";
                     } elseif (strpbrk($v, '%')){
                         $sql .= " AND t.{$i} LIKE '{$v}%' ";
-                    } elseif (strpbrk($v, '!')){
-                        $sql .= " AND t.{$i} != '{$v}' ";
+                    } elseif (substr($v, 0, 1) == '!'){
+                        $sql .= " AND t.{$i} != '".substr($v, 1)."' ";
                     } else {
                         $sql .= " AND t.{$i} = '{$v}'";
                     }
