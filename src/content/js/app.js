@@ -126,7 +126,7 @@ var fn = {
                 + '<div class="modal-content">'
                 + '<div class="modal-header">'
                 + '<h5 class="modal-title" id="staticBackdropLabel">' + title + '</h5>'
-                + '<button type="button" class="close" dir="' + id + '" data-dismiss="modal" aria-label="Close">x</button>'
+                + '<button type="button" class="close" dir="modal-' + id + '" data-dismiss="modal" aria-label="Close">x</button>'
                 + '</div>'
                 + h
                 + '</div>'
@@ -150,7 +150,7 @@ var fn = {
 };
 
 $(document).on('click', '.modal .close', function () {
-    var id = $(this).attr('id');
+    var id = $(this).attr('dir');
 
     fn.modalClose(id);
 });
