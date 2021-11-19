@@ -150,7 +150,7 @@ var fn = {
 };
 
 $(document).on('click', '.modal .close', function () {
-    var id = $(this).attr('dir');
+    var id = $(this).attr('id');
 
     fn.modalClose(id);
 });
