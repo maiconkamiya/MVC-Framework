@@ -144,7 +144,7 @@ var fn = {
     },
     modalClose: function (id) {
         setTimeout(function () {
-            $('body').find('div#modal-' + id).remove();
+            $('body').find('div#' + id).remove();
         }, 500);
     }
 };
