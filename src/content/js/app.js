@@ -13,7 +13,9 @@ var spn = {
     hide: function(){
         $('.spin').css({'display':'none'});
     }
-}
+};
+
+var calc = {};
 
 var fn = {
     load:{
