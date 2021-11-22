@@ -165,11 +165,7 @@ jQuery.ajaxSetup({
     },
     error: function (e) {
         if (e.status != '200'){
-            swal({
-                title: "Ocorreu um problema!",
-                text: e.stats + ' ' + e.responseText,
-                type: "error"
-            });
+            al.dialog('error','Ocorreu um problema!', e.stats + ' ' + e.responseText);
         }
 
         $('body').removeClass('loading');
