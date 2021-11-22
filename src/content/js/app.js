@@ -109,10 +109,14 @@ var fn = {
         },
         blur: function(uri, t, el, cl){
             $.post(window.Area + uri, t, function(r){
-                $.each(r, function(i,v){
-                    var ip = $(el).find('input[name="' + i + '"].' + cl);
-                    ip.val(v);
-                });
+                if (r == null){
+                    $(el).find('input.' + cl);
+                } else {
+                    $.each(r, function(i,v){
+                        var ip = $(el).find('input[name="' + i + '"].' + cl);
+                        ip.val(v);
+                    });
+                }
             },'JSON');
         }
     },
