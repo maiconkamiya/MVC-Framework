@@ -154,6 +154,32 @@ var fn = {
     }
 };
 
+jQuery.ajaxSetup({
+    beforeSend: function () {
+        $('body').addClass('loading');
+    },
+    success: function () {
+    },
+    complete: function (e) {
+        $('body').removeClass('loading');
+    },
+    error: function (e) {
+        if (e.status != '200'){
+            swal({
+                title: "Ocorreu um problema!",
+                text: e.stats + ' ' + e.responseText,
+                type: "error"
+            });
+        }
+
+        $('body').removeClass('loading');
+    }
+});
+
+$(document).on('blur','.toupper',function (e){
+    $(this).val($(this).val().toUpperCase());
+});
+
 $(document).on('click', '.modal .close', function () {
     var id = $(this).attr('dir');
 
