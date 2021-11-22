@@ -111,7 +111,7 @@ var fn = {
             console.log('blur', this);
             $.post(window.Area + uri, t, function(r){
                 if (r == null){
-                    $(el).find('input.' + cl);
+                    $(el).find('input.' + cl).val('');
                 } else {
                     $.each(r, function(i,v){
                         var ip = $(el).find('input[name="' + i + '"].' + cl);
