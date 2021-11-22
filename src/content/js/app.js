@@ -108,6 +108,7 @@ var fn = {
             },'JSON');
         },
         blur: function(uri, t, el, cl){
+            console.log('blur', this);
             $.post(window.Area + uri, t, function(r){
                 if (r == null){
                     $(el).find('input.' + cl);
