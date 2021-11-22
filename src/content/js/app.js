@@ -156,21 +156,18 @@ var fn = {
 
 jQuery.ajaxSetup({
     beforeSend: function () {
-        $('body').addClass('loading');
     },
     success: function () {
     },
     complete: function (e) {
-        $('body').removeClass('loading');
     },
     error: function (e) {
         if (e.status != '200'){
-            al.dialog('error','Ocorreu um problema!', e.stats + ' ' + e.responseText);
+            al.dialog('error','Ocorreu um problema!', e.status + ' ' + e.responseText);
         }
-
-        $('body').removeClass('loading');
     }
 });
+
 
 $(document).on('blur','.toupper',function (e){
     $(this).val($(this).val().toUpperCase());

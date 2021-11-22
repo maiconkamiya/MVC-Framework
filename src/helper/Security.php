@@ -17,7 +17,7 @@ class Security {
         } else {
             if (!isset($_SESSION[$area]->ID) || empty($_SESSION[$area]->ID) || $_SESSION[$area]->keyprivate != md5('m2' . CLIENT_IP . $_SERVER['HTTP_USER_AGENT'])){
                 header("HTTP/1.0 401 Unauthorized");
-                header("location: " . APP_ROOT . APP_AREA . "/sessao");
+                //header("location: " . APP_ROOT . APP_AREA . "/sessao");
                 exit();
             }
         }
