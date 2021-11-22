@@ -160,6 +160,9 @@ jQuery.ajaxSetup({
     success: function () {
     },
     complete: function (e) {
+        if (e.status == '401'){
+            location = "criativaUser/sessao";
+        }
     },
     error: function (e) {
         if (e.status != '200'){
