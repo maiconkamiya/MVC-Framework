@@ -3,7 +3,7 @@ var typefield = function(element){
     var item = [];
     var value = ('valor' in element) ? element.valor : element.valorPadrao;
 
-    value = (value == 'null' ? '' : value);
+    value = (value == null ? '' : value);
 
 
     switch (element.tipo){
