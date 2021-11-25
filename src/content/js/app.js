@@ -151,6 +151,9 @@ var fn = {
         setTimeout(function () {
             $('body').find('div#' + id).remove();
         }, 500);
+    },
+    getSizeMain: function(){
+        return $('#main').height;
     }
 };
 
