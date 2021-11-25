@@ -153,7 +153,13 @@ var fn = {
         }, 500);
     },
     getSizeMain: function(){
-        return $('#main').height;
+        var main = $('#main');
+        var container = main.parent('div.container-fluid');
+        if (container.length > 0){
+            return container[0].clientHeight
+        } else {
+            return null;
+        }
     }
 };
 
