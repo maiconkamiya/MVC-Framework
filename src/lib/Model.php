@@ -251,6 +251,8 @@ class Model extends Config {
                         $sql .= " AND t.{$i} LIKE '{$v}%' ";
                     } elseif (substr($v, 0, 1) == '!'){
                         $sql .= " AND t.{$i} != '".substr($v, 1)."' ";
+                    } elseif (substr($v, 0, 1) == '>'){
+                        $sql .= " AND t.{$i} > ".substr($v, 1)." ";
                     } else {
                         $sql .= " AND t.{$i} = '{$v}'";
                     }
