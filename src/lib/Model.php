@@ -179,7 +179,9 @@ class Model extends Config {
 
     private function Log($descricao, $sintaxe){
         try {
-            $sql = "INSERT INTO logmysql (descricao, sintaxe) VALUES ('" . str_replace("'","`", $descricao) . "','" . str_replace("'","`", $sintaxe) . "')";
+            $prefix = self::$prefix;
+
+            $sql = "INSERT INTO {$prefix}logmysql (descricao, sintaxe) VALUES ('" . str_replace("'","`", $descricao) . "','" . str_replace("'","`", $sintaxe) . "')";
             $state = $this->con->prepare($sql);
             $state->execute();
         } catch(\PDOException $ex){
