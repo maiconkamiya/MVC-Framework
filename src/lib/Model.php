@@ -45,8 +45,9 @@ class Model extends Config {
 
             $this->con->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch(\PDOException $ex){
-            echo json_encode(array('sucess' => false, 'feedback' => $ex->getMessage() . ' host:' . self::$host . ' db:' . self::$dbname));
-            exit();
+            throw new \Exception($ex->getMessage());
+            //echo json_encode(array('sucess' => false, 'feedback' => $ex->getMessage() . ' host:' . self::$host . ' db:' . self::$dbname));
+            //exit();
         }
     }
 
@@ -56,7 +57,8 @@ class Model extends Config {
             $state->execute();
         } catch(\PDOException $ex){
             $this->Log($ex->getMessage(), $sql);
-            die($ex->getMessage() . ' ' . $sql);
+            //die($ex->getMessage() . ' ' . $sql);
+            throw new \Exception($ex->getMessage());
         }
         $array = array();
         while($row = $state->fetchObject()){
@@ -72,7 +74,9 @@ class Model extends Config {
             return array('sucess'=>$state->execute());
         } catch(\PDOException $ex){
             $this->Log($ex->getMessage(), $sql);
-            return array('sucess'=>false, 'feedback'=>$ex->getMessage(), 'sql' => $sql);
+
+            throw new \Exception($ex->getMessage());
+            //return array('sucess'=>false, 'feedback'=>$ex->getMessage(), 'sql' => $sql);
         }
     }
 
@@ -81,7 +85,9 @@ class Model extends Config {
             return array('sucess'=>$this->con->query($sql));
         } catch(\PDOException $ex){
             $this->Log($ex->getMessage(), $sql);
-            return array('sucess'=>false, 'feedback'=>$ex->getMessage() .' '. $sql);
+
+            throw new \Exception($ex->getMessage());
+            //return array('sucess'=>false, 'feedback'=>$ex->getMessage() .' '. $sql);
         }
     }
 
@@ -102,7 +108,9 @@ class Model extends Config {
             $state->execute();
         } catch(\PDOException $ex){
             $this->Log($ex->getMessage(), $sql);
-            return array('sucess'=>false, 'feedback'=>$ex->getMessage() . $sql);
+
+            throw new \Exception($ex->getMessage());
+            //return array('sucess'=>false, 'feedback'=>$ex->getMessage() . $sql);
         }
 
         return array('sucess'=>true, 'feedback'=>'Inserido', 'codigo'=>$this->Last($table));
@@ -123,7 +131,9 @@ class Model extends Config {
 
         } catch(\PDOException $ex){
             $this->Log($ex->getMessage(), $sql);
-            return array('sucess'=>false, 'feedback'=>$ex->getMessage(). $sql);
+
+            throw new \Exception($ex->getMessage());
+            //return array('sucess'=>false, 'feedback'=>$ex->getMessage(). $sql);
         }
 
         return array('sucess'=>true, 'feedback'=> 'Atualizado');
@@ -139,7 +149,9 @@ class Model extends Config {
             $state->execute();
         } catch(\PDOException $ex){
             $this->Log($ex->getMessage(), $sql);
-            return array('sucess'=>false, 'feedback'=>$ex->getMessage() . $sql);
+
+            throw new \Exception($ex->getMessage());
+            //return array('sucess'=>false, 'feedback'=>$ex->getMessage() . $sql);
         }
         return array('sucess'=>true, 'feedback'=> '');
     }
@@ -150,7 +162,9 @@ class Model extends Config {
             $state->execute();
             $state = $state->fetchObject();
         } catch(\PDOException $ex){
-            return array('sucess'=>false, 'feedback'=>$ex->getMessage() . $table);
+
+            throw new \Exception($ex->getMessage());
+            //return array('sucess'=>false, 'feedback'=>$ex->getMessage() . $table);
         }
         return isset($state->last) ? $state->last : null;
     }
@@ -169,7 +183,9 @@ class Model extends Config {
             $state = $this->con->prepare($sql);
             $state->execute();
         } catch(\PDOException $ex){
-            return array('sucess'=>false, 'feedback'=>$ex->getMessage());
+
+            throw new \Exception($ex->getMessage());
+            //return array('sucess'=>false, 'feedback'=>$ex->getMessage());
         }
     }
 
