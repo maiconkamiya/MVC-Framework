@@ -270,12 +270,12 @@ class Model extends Config {
                     } elseif (substr($v, 0, 1) == '!'){
                         $sql .= " AND t.{$i} != '".substr($v, 1)."' ";
                     } elseif (substr($v, 0, 2) == '<='){
-                        $sql .= " AND t.{$i} <= ".substr($v, 1)." ";
+                        $sql .= " AND t.{$i} <= ".substr($v, 2)." ";
                     } elseif (substr($v, 0, 2) == '>='){
-                        $sql .= " AND t.{$i} >= ".substr($v, 1)." ";
-                    } elseif (substr($v, 0, 2) == '<'){
+                        $sql .= " AND t.{$i} >= ".substr($v, 2)." ";
+                    } elseif (substr($v, 0, 1) == '<'){
                         $sql .= " AND t.{$i} < ".substr($v, 1)." ";
-                    } elseif (substr($v, 0, 2) == '>'){
+                    } elseif (substr($v, 0, 1) == '>'){
                         $sql .= " AND t.{$i} > ".substr($v, 1)." ";
                     } else {
                         $sql .= " AND t.{$i} = '{$v}'";
