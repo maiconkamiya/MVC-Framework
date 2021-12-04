@@ -32,7 +32,7 @@ var fn = {
                 table.find('[name="email"]').val(r.email);
                 table.find('[name="cep"]').val(r.cep);
                 table.find('[name="telefone"]').val(r.telefone);
-                table.find('[name="municipio"]').val(r.ibge.cidade);
+                table.find('[name="cidade"]').val(r.ibge.cidade);
                 table.find('[name="uf"]').val(r.ibge.uf);
                 table.find('[name="ibge"]').val(r.ibge.ibge);
             },'JSON');
@@ -45,7 +45,7 @@ var fn = {
                 if (('error' in r)==false){
                     table.find('[name="endereco"]').val(r.endereco);
                     table.find('[name="bairro"]').val(r.bairro);
-                    table.find('[name="municipio"]').val(r.municipio);
+                    table.find('[name="cidade"]').val(r.municipio);
                     table.find('[name="uf"]').val(r.uf);
                     table.find('[name="ibge"]').val(r.ibge);
                 } else {
