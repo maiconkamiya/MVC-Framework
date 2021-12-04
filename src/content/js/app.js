@@ -23,7 +23,7 @@ var fn = {
             var table = $(t).parents('[id^="table-"]');
             var text = table.find(`[name="${el}"]`).val();
             text=text.replace(/([-.*+?^=!:${}()|\[\]\/\\])/g,'');
-            $.get(window.Area + 'criativaReceita/consulta/cnpj/' + text, function(r){
+            $.get(window.Area + 'criativaHelper/consulta/pessoa/' + text, function(r){
                 table.find('[name="razao"]').val(r.nome);
                 table.find('[name="fantasia"]').val(r.fantasia);
                 table.find('[name="endereco"]').val(r.logradouro);
@@ -41,7 +41,7 @@ var fn = {
             var table = $(t).parents('[id^="table-"]');
             var text = table.find(`[name="${el}"]`).val();
             text=text.replace(/([-.*+?^=!:${}()|\[\]\/\\])/g,'');
-            $.get(window.Area + 'criativaIBGE/consulta/cep/' + text, function(r){
+            $.get(window.Area + 'criativaHelper/consulta/cep/' + text, function(r){
                 if (('error' in r)==false){
                     table.find('[name="endereco"]').val(r.endereco);
                     table.find('[name="bairro"]').val(r.bairro);
