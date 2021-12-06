@@ -5,7 +5,7 @@ namespace criativa\helper;
 class Security {
     public function __construct($area = 'SESSAO', $ws = false, $redirect = false){
         if (!defined('REDIRECT_SESSAO')){
-            define('REDIRECT_SESSAO',APP_ROOT . APP_AREA . "/sessao");
+            define('REDIRECT_SESSAO', APP_ROOT . APP_AREA . "/sessao");
         }
 
         if ($ws){
