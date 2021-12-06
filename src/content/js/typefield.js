@@ -5,7 +5,7 @@ var typefield = function(element){
 
     value = (value == null ? '' : value);
 
-    element.btnFuncao = element.btnFuncao.replace('`',"'");
+    element.btnFuncao = element.btnFuncao.replaceAll('`',"'");
 
 
     switch (element.tipo){
