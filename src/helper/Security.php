@@ -3,7 +3,11 @@
 namespace criativa\helper;
 
 class Security {
-    public function __construct($area = 'SESSAO', $ws = false, $redirect = null){
+    public function __construct($area = 'SESSAO', $ws = false, $redirect = false){
+        if (!defined('REDIRECT_SESSAO')){
+            define('REDIRECT_SESSAO',APP_ROOT . APP_AREA . "/sessao");
+        }
+
         if ($ws){
             if (!isset($_SERVER['PHP_AUTH_USER']) || empty($_SERVER['PHP_AUTH_USER'])){
                 die('Não foi autenticado');
@@ -17,8 +21,8 @@ class Security {
         } else {
             if (!isset($_SESSION[$area]->ID) || empty($_SESSION[$area]->ID) || $_SESSION[$area]->keyprivate != md5('m2' . CLIENT_IP . $_SERVER['HTTP_USER_AGENT'])){
                 header("HTTP/1.0 401 Unauthorized");
-                if (!is_null($redirect)){
-                    header("location: " . $redirect);
+                if ($redirect){
+                    header("location: " . REDIRECT_SESSAO);
                 }
                 exit();
             }
