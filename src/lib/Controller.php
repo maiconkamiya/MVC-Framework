@@ -26,6 +26,14 @@ class Controller extends System {
     public $image;
     public $movie;
 
+    public function __construct(){
+        parent::__construct();
+
+        if (class_exists('\criativaHelper\api\ApiParametro')) {
+            new \criativaHelper\api\ApiParametro();
+        }
+    }
+
     public function view($name = null){
         $this->setSEO();
 
