@@ -24,7 +24,7 @@ var fn = {
             var text = table.find(`[name="${el}"]`).val();
             text=text.replace(/([-.*+?^=!:${}()|\[\]\/\\])/g,'');
             $.get(window.Area + 'criativaHelper/consulta/pessoa/' + text, function(r){
-                table.find('[name="razao"]').val(r.nome);
+                table.find('[name="cliente"]').val(r.nome);
                 table.find('[name="fantasia"]').val(r.fantasia);
                 table.find('[name="endereco"]').val(r.logradouro);
                 table.find('[name="numero"]').val(r.numero);
