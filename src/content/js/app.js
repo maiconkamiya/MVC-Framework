@@ -165,6 +165,7 @@ var fn = {
 
 jQuery.ajaxSetup({
     beforeSend: function () {
+        spn.show('Carregando');
     },
     success: function () {
     },
@@ -172,6 +173,7 @@ jQuery.ajaxSetup({
         if (e.status == '401'){
             location = "criativaUser/sessao";
         }
+        spn.hide();
     },
     error: function (e) {
         if (e.status != '200'){
