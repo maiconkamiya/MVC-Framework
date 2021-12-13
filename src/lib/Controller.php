@@ -122,6 +122,10 @@ class Controller extends System {
     }
 
     private function setSEO(){
+        if (!defined('TITLE')){ define('TITLE',''); }
+        if (!defined('DESCRIPTION')){ define('DESCRIPTION',''); }
+        if (!defined('KEYWORDS')){ define('KEYWORDS',''); }
+
         if (empty($this->title)){ $this->title = TITLE; }
         if (empty($this->description)){ $this->description = DESCRIPTION; }
         if (empty($this->keywords)){ $this->keywords = KEYWORDS; }
