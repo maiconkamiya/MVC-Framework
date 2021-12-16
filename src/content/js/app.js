@@ -229,6 +229,10 @@ window.addEventListener('popstate', function(event)
     }
 });
 
+$('#fullscreen').click(function () {
+    screenfull.toggle($('#container')[0]);
+});
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
