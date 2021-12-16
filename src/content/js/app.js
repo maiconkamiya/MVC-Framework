@@ -54,7 +54,7 @@ var fn = {
             },'JSON');
         },
         rotina: function(){
-            $.get(window.Area + 'criativaRoutine/routine/getlist', function(r){
+            $.get('criativaUser/routine/getlist', function(r){
                 var code = "";
 
                 var item = template.rotina.item;
