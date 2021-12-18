@@ -1,7 +1,7 @@
 {
     "name": "mtakeshi/mvc-framework",
     "description": "Framework baisco e simples de utilizar",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "type": "library",
     "keywords": ["php","mvc","framework"],
     "homepage": "https://github.com/maiconkamiya/MVC-Framework",
