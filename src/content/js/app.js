@@ -230,6 +230,8 @@ var render = function(){
             var features = 'height=700,width=1200,top=0,left=0,toolbar=1,Location=0,Directories=0,Status=0,menubar=1,Scrollbars=1,Resizable=0';
 
             window.open('modal/#' + hash, null, features);
+
+            window.location.hash = '';
         } else {
             $.get(window.Area + hash, function(response){
                 $('#main').empty().html(response);
