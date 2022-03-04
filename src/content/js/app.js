@@ -107,9 +107,10 @@ var fn = {
                 $('#list-rotina').html(code);
             },'JSON');
         },
-        blur: function(uri, t, el, cl){
+        blur: async function(uri, t, el, cl){
             console.log('blur', this);
-            $.post(window.Area + uri, t, function(r){
+
+            await $.post(window.Area + uri, t, function(r){
                 if (r == null){
                     $(el).find('input.' + cl).val('');
                 } else {
@@ -118,6 +119,7 @@ var fn = {
                         ip.val(v);
                     });
                 }
+                return new Promise(resolve => resolve);
             },'JSON');
         }
     },
