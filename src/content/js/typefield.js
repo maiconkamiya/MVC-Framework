@@ -49,7 +49,7 @@ var typefield = function(element){
             } else if (element.flagConsultaForm == 'S'){
                 field = `<div class="input-group"><input type="text" class="form-control ${element.flagEditavel == 'S' ? 'f-input' : ''} ${element.classIndex}" name="${element.coluna}" value="${value}" style="max-width: 120px" autocomplete="off" ${element.flagBloqueado == 'S' ? ' disabled' : ''} ${element.flagObrigatorio == 'S' ? 'required' : ''} blur="true" blur-uri="${element.uriConsulta}" blur-class="${element.classIndex}"><button class="btn btn-outline-secondary" type="button" onclick="${element.btnFuncao}" ${element.flagBloqueado == 'S' ? ' disabled' : ''}><i class="fas fa-ellipsis-h"></i></button><input type="text" class="form-control ${element.classIndex}" name="label" disabled></div>`;
             } else {
-                        field = `<input type="text" class="form-control ${element.flagEditavel == 'S' ? 'f-input' : ''} ${element.classIndex}" name="${element.coluna}" value="${value}" autocomplete="off" ${element.flagBloqueado == 'S' ? ' disabled' : ''}  ${element.uriConsulta != '' ? `blur="true" blur-uri="${element.uriConsulta}" blur-class="${element.classIndex}"` : ''} ${element.flagObrigatorio == 'S' ? 'required' : ''}>`;
+                        field = `<input type="text" class="form-control ${element.flagEditavel == 'S' ? 'f-input' : ''} ${element.classIndex}" name="${element.coluna}" value="${value}" autocomplete="off" ${element.flagBloqueado == 'S' ? ' disabled' : ''}  ${element.uriConsulta != '' ? `blur="multiplo" blur-uri="${element.uriConsulta}" blur-class="${element.classIndex}"` : ''} ${element.flagObrigatorio == 'S' ? 'required' : ''}>`;
             }
             break;
     }
