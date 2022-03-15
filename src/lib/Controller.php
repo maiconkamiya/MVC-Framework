@@ -34,6 +34,16 @@ class Controller extends System {
         }
     }
 
+    public function checkPermissao($id){
+        if ( class_exists('\criativaUser\api\ApiUsuarioPermissaoRotina') ) {
+            $api = new \criativaUser\api\ApiUsuarioPermissaoRotina();
+            return $api->checkPermissao($id);
+        } else {
+            return null;
+        }
+    }
+
+
     public function view($name = null){
         $this->setSEO();
 
