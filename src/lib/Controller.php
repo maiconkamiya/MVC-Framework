@@ -34,15 +34,23 @@ class Controller extends System {
         }
     }
 
-    public function checkPermissao($id){
+    public function checkPermissao($id, $redirect = false){
+        $permissao = false;
+
         if ( class_exists('\criativaUser\api\ApiUsuarioPermissaoRotina') ) {
             $api = new \criativaUser\api\ApiUsuarioPermissaoRotina();
-            return $api->checkPermissao($id);
+            $permissao = $api->checkPermissao($id);
+        }
+
+        if ($redirect){
+            if (!$permissao){
+                $this->view('../sessao/noacess');
+                exit();
+            }
         } else {
-            return null;
+            return $permissao;
         }
     }
-
 
     public function view($name = null){
         $this->setSEO();
