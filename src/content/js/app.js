@@ -75,6 +75,8 @@ var fn = {
 
                         var lSubItem = "";
 
+                        var lGroup = [];
+
                         $.each(v.sub, function(ir, vr){
 
                             var tSubItem = subitem;
@@ -85,8 +87,26 @@ var fn = {
                             tSubItem = tSubItem.replace('[attr]', (vr.dir != "" ? (vr.dialog == 'S' ? 'dialog="open" uri="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : '') : ''));
                             tSubItem = tSubItem.replace('[uri]', (vr.dir != "" ? (vr.dialog == 'S' ? 'javascript:;' : '#/'+ vr.dir ) : '#'));
 
+                            lGroup[vr.grupo] += tSubItem;
+                        });
+
+                        $.each(lGroup, function(ig, vg){
+
+                            var tSubItem = subitem;
+
+                            tSubItem = tSubItem.replace('[nome]', ig);
+                            tSubItem = tSubItem.replace('[icon]', '');
+                            tSubItem = tSubItem.replace('[class]', '');
+                            tSubItem = tSubItem.replace('[attr]', '');
+                            tSubItem = tSubItem.replace('[uri]', 'javascript:;');
+                            tSubItem = tSubItem.replace('[sub]', sub);
+                            tSubItem = tSubItem.replace('[subitem]', vg);
+
                             lSubItem += tSubItem;
                         });
+
+
+
 
                         tItem = tItem.replace('[subitem]', lSubItem);
                         code += tItem;
