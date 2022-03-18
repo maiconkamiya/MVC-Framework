@@ -87,7 +87,11 @@ var fn = {
                             tSubItem = tSubItem.replace('[attr]', (vr.dir != "" ? (vr.dialog == 'S' ? 'dialog="open" uri="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : '') : ''));
                             tSubItem = tSubItem.replace('[uri]', (vr.dir != "" ? (vr.dialog == 'S' ? 'javascript:;' : '#/'+ vr.dir ) : '#'));
 
-                            lGroup[vr.grupo] += tSubItem;
+                            if (vr.grupo == ''){
+                                lSubItem += tSubItem;
+                            } else {
+                                lGroup[vr.grupo] += tSubItem;
+                            }
                         });
 
                         $.each(lGroup, function(ig, vg){
@@ -104,9 +108,6 @@ var fn = {
 
                             lSubItem += tSubItem;
                         });
-
-
-
 
                         tItem = tItem.replace('[subitem]', lSubItem);
                         code += tItem;
