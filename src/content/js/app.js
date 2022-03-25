@@ -91,7 +91,18 @@ var fn = {
                             if (vr.grupo == ''){
                                 lSubItem += tSubItem;
                             } else {
-                                lGroup[vr.grupo] += tSubItem;
+                                var exts = false;
+
+                                $.each(lGroup, function(ig, vg){
+                                    if (vg.name == vr.grupo){
+                                        exts = true;
+                                        lGroup[ig].subs += tSubItem;
+                                    }
+                                });
+
+                                if (!exts){
+                                    lGroup.push({name: vr.grupo, subs: tSubItem});
+                                }
                             }
                         });
 
@@ -99,13 +110,13 @@ var fn = {
 
                             var tSubItem = subitem;
 
-                            tSubItem = tSubItem.replace('[nome]', ig);
+                            tSubItem = tSubItem.replace('[nome]', vg.name);
                             tSubItem = tSubItem.replace('[icon]', '');
-                            tSubItem = tSubItem.replace('[class]', '');
+                            tSubItem = tSubItem.replace('[class]', 'sidenav-toggle');
                             tSubItem = tSubItem.replace('[attr]', '');
                             tSubItem = tSubItem.replace('[uri]', 'javascript:;');
                             tSubItem = tSubItem.replace('[sub]', sub);
-                            tSubItem = tSubItem.replace('[subitem]', vg);
+                            tSubItem = tSubItem.replace('[subitem]', vg.subs);
 
                             lSubItem += tSubItem;
                         });
