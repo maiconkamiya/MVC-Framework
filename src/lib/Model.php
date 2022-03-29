@@ -30,6 +30,7 @@ class Model extends Config {
                     $this->con = new \PDO("mysql:host=" . self::$host . ";dbname=" . self::$dbname, self::$user, self::$pwd);
                     $this->con->exec("set names " . self::$charset);
                     $this->con->exec("SET GLOBAL sql_mode=''");
+                    $this->con->exec("SET GLOBAL innodb_strict_mode=0");
                     $this->con->exec("SET GLOBAL time_zone='".TIME_ZONE."'");
                     break;
                 case 'firebird':
