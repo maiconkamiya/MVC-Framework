@@ -15,9 +15,9 @@ class Controller extends System {
     public $path;
     public $pathRender;
 
-    public $captionController;
-    public $captionAction;
-    public $captionParams;
+    public $captionController = null;
+    public $captionAction = null;
+    public $captionParams = null;
 
     //Metatag
     public $title;
@@ -94,6 +94,8 @@ class Controller extends System {
             ), EXTR_PREFIX_ALL, 'caption');
         }
 
+        $this->_breadcrumb();
+
         if (!is_null($view) && is_array($view)) {
             foreach ($view as $l) {
                 include($l);
@@ -127,6 +129,15 @@ class Controller extends System {
                 $this->path = 'src/view/' . $this->getArea() . '/' . $this->getController() . '/' . $this->pathRender . '.phtml';
             }
             $this->_fileExists($this->path);
+        }
+    }
+
+    private function _breadcrumb(){
+        if (!is_null($this->captionController) && !is_null($this->captionAction)){
+            $file = 'src/content/shared/_breadcrumb.phtml';
+            if (!file_exists($file)) {
+                include($file);
+            }
         }
     }
 
