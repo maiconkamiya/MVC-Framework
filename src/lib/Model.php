@@ -59,7 +59,7 @@ class Model extends Config {
         } catch(\PDOException $ex){
             $this->Log($ex->getMessage(), $sql);
             //die($ex->getMessage() . ' ' . $sql);
-            throw new \Exception($ex->getMessage());
+            throw new \Exception($ex->getMessage() . " SQL: {$sql} ");
         }
         $array = array();
         while($row = $state->fetchObject()){
@@ -76,7 +76,7 @@ class Model extends Config {
         } catch(\PDOException $ex){
             $this->Log($ex->getMessage(), $sql);
 
-            throw new \Exception($ex->getMessage());
+            throw new \Exception($ex->getMessage() . " SQL: {$sql} ");
             //return array('sucess'=>false, 'feedback'=>$ex->getMessage(), 'sql' => $sql);
         }
     }
@@ -87,7 +87,7 @@ class Model extends Config {
         } catch(\PDOException $ex){
             $this->Log($ex->getMessage(), $sql);
 
-            throw new \Exception($ex->getMessage());
+            throw new \Exception($ex->getMessage() . " SQL: {$sql} ");
             //return array('sucess'=>false, 'feedback'=>$ex->getMessage() .' '. $sql);
         }
     }
