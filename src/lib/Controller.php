@@ -134,8 +134,8 @@ class Controller extends System {
 
     private function _breadcrumb(){
         if (!is_null($this->captionController) && !is_null($this->captionAction)){
-            $file = 'src/content/shared/_breadcrumb.phtml';
-            if (!file_exists($file)) {
+            $file = './src/content/shared/_breadcrumb.phtml';
+            if (file_exists($file)) {
                 include($file);
             }
         }
