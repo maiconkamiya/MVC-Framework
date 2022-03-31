@@ -154,6 +154,28 @@ var fn = {
                 }
                 return new Promise(resolve => resolve);
             },'JSON');
+        },
+        select: async function (form, element, uri, t, selected) {
+
+            var form = $(form);
+
+            form.find(element).empty().append('<option value="">Carregando...</option>');
+
+            await $.post(window.Area + uri, t, function (r) {
+                form.find(element).empty();
+                form.find(element).append('<option value=""></option>');
+
+                $.each(r, function (li, lv) {
+                    form.find(element).append('<option value="' + lv.codigo + '">' + lv.label + '</option>');
+                });
+
+                if (selected) {
+                    form.find(element).val(selected);
+                }
+
+                return new Promise(resolve => resolve);
+
+            }, 'JSON');
         }
     },
     modal: function(uri, title, size){
