@@ -81,7 +81,7 @@ var fn = {
 
                             var tSubItem = subitem;
 
-                            tSubItem = tSubItem.replace('[nome]', vr.nome);
+
                             tSubItem = tSubItem.replace('[icon]', (vr.icon != '' ? '<' : ''));
                             tSubItem = tSubItem.replace('[class]', '');
                             tSubItem = tSubItem.replace('[attr]', (vr.dir != "" ? (vr.dialog == 'S' ? 'dialog="open" uri="'+ vr.dir +'" size="'+ vr.dsize +'" title="'+ vr.nome +'"' : '') : ''));
@@ -89,9 +89,11 @@ var fn = {
                             tSubItem = tSubItem.replace('[sub]', '');
 
                             if (vr.grupo == ''){
+                                tSubItem = tSubItem.replace('[nome]', vr.codrotina +' '+ vr.nome);
                                 lSubItem += tSubItem;
                             } else {
                                 var exts = false;
+                                tSubItem = tSubItem.replace('[nome]', vr.nome);
 
                                 $.each(lGroup, function(ig, vg){
                                     if (vg.name == vr.grupo){
