@@ -61,6 +61,24 @@ class Str {
 
     }
 
+    public static function convertDataBRL($data)
+    {
+        if (!strpos($data,'-')){
+            return $data;
+        }
+        if (strpos($data,' ')){
+            $dh = explode(' ', $data);
+            $d = explode('-', $dh[0]);
+            $data = $d[2] . '/' . $d[1] . '/' . $d[0] . ' ' . $dh[1];
+            return $data;
+        } else {
+            $d = explode('-', $data);
+            $data = $d[2] . '/' . $d[1] . '/' . $d[0];
+            return $data;
+        }
+
+    }
+
     public static function convertDataOra($data)
     {
         if (!strpos($data,'/')){
