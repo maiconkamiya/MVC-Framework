@@ -1,6 +1,5 @@
 <?php
 
-
 namespace criativa\lib;
 
 use criativa\helper\Str;
@@ -53,21 +52,21 @@ class System extends Router {
         $this->explode = explode('/', $this->url);
     }
     private function _setArea(){
-        Router::$onDefault = true;
         Router::$modCriativa = false;
 
         foreach (Router::$routers as $i => $v){
-            if (Router::$onDefault && $this->explode[0] == $i){
+            if ($this->explode[0] == $i){
                 $this->area = $v;
-                Router::$onDefault = false;
+                if (Router::$routerOnDefault !== $v){
+                    Router::$onDefault = false;
+                }
             }
         }
 
-        if ( (Router::$onDefault && preg_match("/^". Router::$prefixCriativa ."/", $this->explode[0])) ){
-            $this->area = $this->explode[0];
-            Router::$onDefault = false;
-            Router::$modCriativa = true;
-        } elseif ( (Router::$onDefault && Router::$prefixCriativa == Router::$routerOnDefault) ){
+        $match = array();
+
+        if ( (preg_match("/^". Router::$prefixCriativa ."/", $this->url, $match)) ){
+            $this->area = $match[0];
             Router::$modCriativa = true;
         }
 
@@ -78,20 +77,33 @@ class System extends Router {
         }
     }
     private function _setController(){
-        $this->controller = Router::$onDefault ? $this->explode[0] :
-            (empty($this->explode[1]) || is_null($this->explode[1]) || !isset($this->explode[1]) ? 'home' : $this->explode[1]);
+        if (Router::$modCriativa){
+            $this->controller = (empty($this->explode[2]) || is_null($this->explode[2]) || !isset($this->explode[2]) ? 'home' : $this->explode[2]);
+        } else {
+            $this->controller = Router::$onDefault ? $this->explode[0] :
+                (empty($this->explode[1]) || is_null($this->explode[1]) || !isset($this->explode[1]) ? 'home' : $this->explode[1]);
+        }
     }
     private function _setAction(){
-        $this->action = Router::$onDefault ?
-            (!isset($this->explode[1]) || is_null($this->explode[1]) || empty($this->explode[1]) ? 'index' : $this->explode[1]) :
-            (!isset($this->explode[2]) || is_null($this->explode[2]) || empty($this->explode[2]) ? 'index' : $this->explode[2]);
+        if (Router::$modCriativa){
+            $this->action = (!isset($this->explode[3]) || is_null($this->explode[3]) || empty($this->explode[3]) ? 'index' : $this->explode[3]);
+        } else {
+            $this->action = Router::$onDefault ?
+                (!isset($this->explode[1]) || is_null($this->explode[1]) || empty($this->explode[1]) ? 'index' : $this->explode[1]) :
+                (!isset($this->explode[2]) || is_null($this->explode[2]) || empty($this->explode[2]) ? 'index' : $this->explode[2]);
+        }
     }
     private function _setParams(){
-        if (self::$onDefault){
-            unset($this->explode[0], $this->explode[1]);
+        if (Router::$modCriativa){
+            unset($this->explode[0], $this->explode[1], $this->explode[2], $this->explode[3]);
         } else {
-            unset($this->explode[0], $this->explode[1], $this->explode[2]);
+            if (self::$onDefault){
+                unset($this->explode[0], $this->explode[1]);
+            } else {
+                unset($this->explode[0], $this->explode[1], $this->explode[2]);
+            }
         }
+
 
         if (end($this->explode) == null){
             array_pop($this->explode);
@@ -123,7 +135,7 @@ class System extends Router {
         if (!(class_exists($this->init))) {
             header("HTTP/1.0 404 Not Found");
             define('ERROR', "Não foi localizado o Controller: {$this->controller} Area: {$this->area}");
-            echo ERROR;
+            echo $this->init . ERROR;
             exit();
         }
     }
@@ -137,13 +149,13 @@ class System extends Router {
     }
 
     public function run(){
-        
-        if (Router::$modCriativa){            
-            $this->init = $this->area . '\\controller\\' . $this->controller . 'Controller';
+
+        if (Router::$modCriativa){
+            $this->init = str_replace('/','\\',$this->area) . 'controller\\' . $this->controller . 'Controller';
         } else {
             $this->init = 'mvc\\controller\\' . $this->area . '\\' . $this->controller . 'Controller';
         }
-        
+
         $this->_validarController();
         $this->init = new $this->init();
         $this->_validarAction();
