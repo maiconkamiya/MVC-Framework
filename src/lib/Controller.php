@@ -61,7 +61,7 @@ class Controller extends System {
         if (is_null($this->layout)) {
             $this->render();
         } else {
-            if (is_null(Config::getLayoutDefault())){
+            if (!is_null(Config::getLayoutDefault())){
                 $this->layout = Config::getLayoutDefault();
             } else {
                 if (Router::$modCriativa){
