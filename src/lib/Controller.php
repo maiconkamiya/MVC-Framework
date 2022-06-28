@@ -29,16 +29,16 @@ class Controller extends System {
     public function __construct(){
         parent::__construct();
 
-        if (class_exists('\criativaHelper\api\ApiParametro')) {
-            new \criativaHelper\api\ApiParametro();
+        if (class_exists('\criativa\helper\api\ApiParametro')) {
+            new \criativa\hHelper\api\ApiParametro();
         }
     }
 
     public function checkPermissao($id, $redirect = false){
         $permissao = false;
 
-        if ( class_exists('\criativaUser\api\ApiUsuarioPermissaoRotina') ) {
-            $api = new \criativaUser\api\ApiUsuarioPermissaoRotina();
+        if ( class_exists('\criativa\user\api\ApiUsuarioPermissaoRotina') ) {
+            $api = new \criativa\user\api\ApiUsuarioPermissaoRotina();
             $permissao = $api->checkPermissao($id);
         }
 
@@ -61,16 +61,15 @@ class Controller extends System {
         if (is_null($this->layout)) {
             $this->render();
         } else {
-
-            if (Router::$modCriativa){
-                if (is_null(Config::getLayoutDefault())){
+            if (is_null(Config::getLayoutDefault())){
+                $this->layout = Config::getLayoutDefault();
+            } else {
+                if (Router::$modCriativa){
                     $reflector = new \ReflectionClass(get_called_class());
                     $this->layout = dirname($reflector->getFileName()) . '/../content/shared/' . $this->layout . '.phtml';
                 } else {
-                    $this->layout = Config::getLayoutDefault();
+                    $this->layout = "src/content/{$this->getArea()}/shared/{$this->layout}.phtml";
                 }
-            } else {
-                $this->layout = "src/content/{$this->getArea()}/shared/{$this->layout}.phtml";
             }
 
             if (file_exists($this->layout)) {
