@@ -30,7 +30,7 @@ class Controller extends System {
         parent::__construct();
 
         if (class_exists('\criativa\helper\api\ApiParametro')) {
-            new \criativa\hHelper\api\ApiParametro();
+            new \criativa\helper\api\ApiParametro();
         }
     }
 
