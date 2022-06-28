@@ -40,7 +40,7 @@ class Security {
             # Os parâmetros podem ficar em um array
             $vetParametros = array (
                 "secret" => RECAPTCH_KEYPRIVATE,
-                "response" => $_POST["g-recaptcha-response"],
+                "response" => $token,
                 "remoteip" => CLIENT_IP
             );
 
