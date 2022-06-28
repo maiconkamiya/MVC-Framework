@@ -29,9 +29,9 @@ class Security {
         }
     }
 
-    public static function Recaptcha(){
+    public static function Recaptcha($token){
         //return true;
-        if (isset($_POST["g-recaptcha-response"])) {
+        if (isset($token)) {
 
             if (!defined('RECAPTCH_KEYPRIVATE')){
                 return false;
