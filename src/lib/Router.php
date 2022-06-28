@@ -12,7 +12,7 @@ class Router {
 
     protected static $onDefault = true;
 
-    protected static $prefixCriativa = 'criativa';
+    protected static $prefixCriativa = 'criativa\/([a-z]+)';
     
     protected static $modCriativa = false;
 
