@@ -27,14 +27,22 @@ class Security {
                         $_SESSION[$area] = $permissao;
                     }
                 }
-            }
 
-            if (!isset($_SESSION[$area]->ID) || empty($_SESSION[$area]->ID) || $_SESSION[$area]->accessToken != md5('m2' . CLIENT_IP . $_SERVER['HTTP_USER_AGENT'])){
-                header("HTTP/1.0 401 Unauthorized");
-                if ($redirect){
-                    header("location: " . REDIRECT_SESSAO);
+                if (!isset($_SESSION[$area]->ID) || empty($_SESSION[$area]->ID)){
+                    header("HTTP/1.0 401 Unauthorized");
+                    if ($redirect){
+                        header("location: " . REDIRECT_SESSAO);
+                    }
+                    exit();
                 }
-                exit();
+            } else {
+                if (!isset($_SESSION[$area]->ID) || empty($_SESSION[$area]->ID) || $_SESSION[$area]->privatekey != md5('m2' . CLIENT_IP . $_SERVER['HTTP_USER_AGENT'])){
+                    header("HTTP/1.0 401 Unauthorized");
+                    if ($redirect){
+                        header("location: " . REDIRECT_SESSAO);
+                    }
+                    exit();
+                }
             }
         }
     }
