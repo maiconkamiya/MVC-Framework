@@ -3,7 +3,14 @@
 namespace criativa\lib;
 
 class Obj {
+
     public function __construct($method = null, $exists = true, $type = 'raw'){
+        $head = getallheaders();
+
+        if (isset($head['Content-Type'])){
+            $type = $head['Content-Type'] == 'application/json' ? 'json' : 'raw';
+        }
+
         if ($method == 'POST'){
             switch ($type){
                 case 'raw':

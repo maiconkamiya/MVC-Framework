@@ -19,7 +19,7 @@ class Security {
 
             $_SESSION['tokenID']=$_SERVER['PHP_AUTH_USER'];
         } else {
-            if (!isset($_SESSION[$area]->ID) || empty($_SESSION[$area]->ID) || $_SESSION[$area]->keyprivate != md5('m2' . CLIENT_IP . $_SERVER['HTTP_USER_AGENT'])){
+            if (!isset($_SESSION[$area]->ID) || empty($_SESSION[$area]->ID) || $_SESSION[$area]->accessToken != md5('m2' . CLIENT_IP . $_SERVER['HTTP_USER_AGENT'])){
                 header("HTTP/1.0 401 Unauthorized");
                 if ($redirect){
                     header("location: " . REDIRECT_SESSAO);
