@@ -30,9 +30,6 @@ class Security {
 
                 if (!isset($_SESSION[$area]->ID) || empty($_SESSION[$area]->ID)){
                     header("HTTP/1.0 401 Unauthorized");
-                    if ($redirect){
-                        header("location: " . REDIRECT_SESSAO);
-                    }
                     exit();
                 }
             } else {
