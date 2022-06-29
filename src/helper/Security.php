@@ -19,10 +19,12 @@ class Security {
 
             $_SESSION['tokenID']=$_SERVER['PHP_AUTH_USER'];
         } else {
-            if (!is_null($this->_getBearerToken())){
+            $token = $this->_getBearerToken();
+
+            if (!is_null($token)){
                 if ( class_exists('\criativa\user\api\ApiUsuarioSessao') ) {
                     $api = new \criativa\user\api\ApiUsuarioSessao();
-                    $permissao = $api->checkLogin($this->_getBearerToken());
+                    $permissao = $api->checkLogin($token);
                     if (isset($permissao->codusuario)){
                         $_SESSION[$area] = $permissao;
                     }
