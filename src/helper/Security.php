@@ -19,6 +19,16 @@ class Security {
 
             $_SESSION['tokenID']=$_SERVER['PHP_AUTH_USER'];
         } else {
+            if (!is_null($this->_getBearerToken())){
+                if ( class_exists('\criativa\user\api\ApiUsuarioSessao') ) {
+                    $api = new \criativa\user\api\ApiUsuarioSessao();
+                    $permissao = $api->checkLogin($this->_getBearerToken());
+                    if (isset($permissao->codusuario)){
+                        $_SESSION[$area] = $permissao;
+                    }
+                }
+            }
+
             if (!isset($_SESSION[$area]->ID) || empty($_SESSION[$area]->ID) || $_SESSION[$area]->accessToken != md5('m2' . CLIENT_IP . $_SERVER['HTTP_USER_AGENT'])){
                 header("HTTP/1.0 401 Unauthorized");
                 if ($redirect){
@@ -71,5 +81,41 @@ class Security {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Get header Authorization
+     * */
+    private function _getAuthorizationHeader(){
+        $headers = null;
+        if (isset($_SERVER['Authorization'])) {
+            $headers = trim($_SERVER["Authorization"]);
+        }
+        else if (isset($_SERVER['HTTP_AUTHORIZATION'])) { //Nginx or fast CGI
+            $headers = trim($_SERVER["HTTP_AUTHORIZATION"]);
+        } elseif (function_exists('apache_request_headers')) {
+            $requestHeaders = apache_request_headers();
+            // Server-side fix for bug in old Android versions (a nice side-effect of this fix means we don't care about capitalization for Authorization)
+            $requestHeaders = array_combine(array_map('ucwords', array_keys($requestHeaders)), array_values($requestHeaders));
+            //print_r($requestHeaders);
+            if (isset($requestHeaders['Authorization'])) {
+                $headers = trim($requestHeaders['Authorization']);
+            }
+        }
+        return $headers;
+    }
+
+    /**
+     * get access token from header
+     * */
+    private function _getBearerToken() {
+        $headers = $this->_getAuthorizationHeader();
+        // HEADER: Get the access token from the header
+        if (!empty($headers)) {
+            if (preg_match('/Bearer\s(\S+)/', $headers, $matches)) {
+                return $matches[1];
+            }
+        }
+        return null;
     }
 }
