@@ -204,6 +204,9 @@ class Model extends Config {
         }
     }
 
+    public function getListTable(){
+        return $this->Select("SELECT table_name FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '{$this->db}'");
+    }
     public function existsTable($elent){
         $query = $this->First($this->Select("SELECT count(1) as count FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '{$this->db}' AND TABLE_NAME = '{$elent}'"));
         return $query->count == 0 ? false : true;
