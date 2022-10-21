@@ -13,7 +13,17 @@ class System extends Router {
   private $params;
   private $init;
 
-  public function __construct(){}
+  public function __construct(){
+    $this->_security();
+    $this->_setDefine();
+
+    $this->_setUrl();
+    $this->_setExplode();
+    $this->_setArea();
+    $this->_setController();
+    $this->_setAction();
+    $this->_setParams();
+  }
 
   private function _security(){
     if (isset($_POST)) {
@@ -139,15 +149,6 @@ class System extends Router {
   }
 
   public function run(){
-    $this->_security();
-    $this->_setDefine();
-
-    $this->_setUrl();
-    $this->_setExplode();
-    $this->_setArea();
-    $this->_setController();
-    $this->_setAction();
-    $this->_setParams();
 
     if (Router::$modCriativa){
         $this->init = str_replace('/','\\',$this->area) . '\\controller\\' . $this->controller . 'Controller';
