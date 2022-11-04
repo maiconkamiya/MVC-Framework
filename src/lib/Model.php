@@ -220,8 +220,8 @@ class Model extends Config {
         return $query->count == 0 ? false : true;
     }
     public function getSizeDB(){
-        $query = $this->First($this->Select("SELECT ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) as sizedb FROM information_schema.tables WHERE table_schema = '{$this->db}';"));
-        return $query->sizedb;
+        //$query = $this->First($this->Select("SELECT ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) as sizedb FROM information_schema.tables WHERE table_schema = '{$this->db}';"));
+        return 0;
     }
 
     protected function where($obj){
