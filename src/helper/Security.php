@@ -18,7 +18,7 @@ class Security {
             }
 
             $_SESSION['tokenID']=$_SERVER['PHP_AUTH_USER'];
-            $_SESSION[$area] = (object)array('ID'=>'8888','codusuario'=>'8888');
+            $_SESSION['SESSAO'] = (object)array('ID'=>'8888','codusuario'=>'8888');
         } else {
             $token = $this->_getBearerToken();
 
