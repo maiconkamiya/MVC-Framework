@@ -61,6 +61,10 @@ class Str {
 
     }
 
+    public static function isDate($x, $format = 'Y-m-d H:i:s') {
+      return (date($format, strtotime($x)) == $x);
+    } 
+
     public static function convertDataBRL($data)
     {
         if (!strpos($data,'-')){
