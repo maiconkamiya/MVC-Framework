@@ -265,7 +265,7 @@ class Model extends Config {
                         $sql .= " AND t.{$i} != '' ";
                     } elseif (is_array($v)){
                         if (!empty($v[0]) && !empty($v[1])){
-                          if (Str::isDate($v[0], 'd/m/Y')) {
+                          if (Str::isDate($v[0])) {
                             $sql .= " AND t.{$i} BETWEEN '".Str::convertData($v[0])." 00:00:00' AND '".Str::convertData($v[1])." 23:59:59' ";
                           } else {
                             $sql .= " AND t.{$i} BETWEEN '".$v[0]."' AND '".$v[1]."' ";

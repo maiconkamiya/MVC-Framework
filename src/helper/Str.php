@@ -61,8 +61,14 @@ class Str {
 
     }
 
-    public static function isDate($x, $format = 'Y-m-d H:i:s') {
-      return (date($format, strtotime($x)) == $x);
+    public static function isDate($x) {
+      if (!preg_match('@^(\d\d)/(\d\d)/(\d\d\d\d)$@', '16/12/2022', $m)) {
+        return false;
+      } elseif (!checkdate($m[2], $m[1], $m[3])) {
+        return false;
+      } else {
+        return true;
+      }
     } 
 
     public static function convertDataBRL($data)
