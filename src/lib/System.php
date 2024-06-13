@@ -155,7 +155,8 @@ class System extends Router {
     if (Router::$modCriativa){
         $this->init = str_replace('/','\\',$this->area) . '\\controller\\' . $this->controller . 'Controller';
     } else {
-        $this->init = 'mvc\\controller\\' . $this->area . '\\' . $this->controller . 'Controller';
+        //$this->init = 'mvc\\controller\\' . $this->area . '\\' . $this->controller . 'Controller';
+        $this->init = 'controller\\' . $this->area . '\\' . $this->controller . 'Controller';
     }
 
     $this->_validarController();
