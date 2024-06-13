@@ -47,7 +47,7 @@ class System extends Router {
 
   private function _setUrl(){
     //$this->url = isset($_GET['url']) ? $_GET['url'] : 'home/index';
-    $this->url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : 'home/index';
+    $this->url = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : 'home/index';
   }
   private function _setExplode(){
     $this->explode = explode('/', $this->url);
