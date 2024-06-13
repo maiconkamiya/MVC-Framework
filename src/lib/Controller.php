@@ -68,7 +68,8 @@ class Controller extends System {
                     $reflector = new \ReflectionClass(get_called_class());
                     $this->layout = dirname($reflector->getFileName()) . '/../content/shared/' . $this->layout . '.phtml';
                 } else {
-                    $this->layout = "src/content/{$this->getArea()}/shared/{$this->layout}.phtml";
+                    //$this->layout = "src/content/{$this->getArea()}/shared/{$this->layout}.phtml";
+                    $this->layout = "src/content/shared/{$this->layout}.phtml";
                 }
             }
 
@@ -125,7 +126,8 @@ class Controller extends System {
 
                 $this->path = dirname($reflector->getFileName()) . '/../view/' . $this->getController() . '/' . $this->pathRender . '.phtml';
             } else {
-                $this->path = 'src/view/' . $this->getArea() . '/' . $this->getController() . '/' . $this->pathRender . '.phtml';
+                //$this->path = 'src/view/' . $this->getArea() . '/' . $this->getController() . '/' . $this->pathRender . '.phtml';
+                $this->path = 'src/view/' . $this->getController() . '/' . $this->pathRender . '.phtml';
             }
             $this->_fileExists($this->path);
         }
