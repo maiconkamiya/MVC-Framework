@@ -2,6 +2,7 @@
 
 namespace criativa\lib;
 
+#[\AllowDynamicProperties]
 class Obj {
 
     public function __construct($method = null, $exists = true, $type = 'raw'){
@@ -35,7 +36,7 @@ class Obj {
                     $json = file_get_contents('php://input');
                     if (!empty($json)){
                         $obj = json_decode($json);
-                        foreach ($obj as $i => $v){
+                        foreach ($obj ?? [] as $i => $v){
                             if (isset($this->{$i}) || $exists){
                                 $this->{$i} = $v;
                             }

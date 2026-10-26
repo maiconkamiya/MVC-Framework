@@ -75,11 +75,9 @@ class Security {
             $vetResposta = json_decode(curl_exec($curlReCaptcha), true);
 
             //print_r($vetResposta);
-            # Fecha a conexão
-            curl_close($curlReCaptcha);
 
             # Analisa o resultado (no caso de erro, pode informar os códigos)
-            if ($vetResposta["success"]){
+            if (!empty($vetResposta["success"])){
                 return true;
             }
             else
