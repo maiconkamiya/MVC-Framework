@@ -119,8 +119,8 @@ class Str {
         $a = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕ"!@#$%&*()_-+={[}]/?;:.,´`\\\'<>';
         $b = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr                                ';
 
-        $string = utf8_decode($string);
-        $string = strtr($string, utf8_decode($a), $b);
+        $string = mb_convert_encoding($string, 'ISO-8859-1', 'UTF-8');
+        $string = strtr($string, mb_convert_encoding($a, 'ISO-8859-1', 'UTF-8'), $b);
         $string = strip_tags(trim($string));
 
         /*Agora, remove qualquer espaço em branco duplicado*/
@@ -136,9 +136,9 @@ class Str {
         $string = str_replace(" ", $glu, $string);
 
         if ($toupper){
-            return strtoupper(utf8_encode($string));
+            return strtoupper(mb_convert_encoding($string, 'UTF-8', 'ISO-8859-1'));
         } else {
-            return strtolower(utf8_encode($string));
+            return strtolower(mb_convert_encoding($string, 'UTF-8', 'ISO-8859-1'));
         }
     }
 
